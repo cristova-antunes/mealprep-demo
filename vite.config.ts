@@ -13,7 +13,7 @@ export default defineConfig({
     env: {
       builtin: true,
     },
-    ignorePatterns: [".next/**", "out/**", "build/**", "next-env.d.ts"],
+    ignorePatterns: [".next/**", "out/**", "build/**", "next-env.d.ts", "src/prisma/contract.d.ts"],
     rules: {
       "no-array-constructor": "error",
       "no-unused-expressions": "error",
