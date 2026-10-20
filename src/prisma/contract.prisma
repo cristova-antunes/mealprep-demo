@@ -1,21 +1,154 @@
 // use prisma-8
 
-model User {
-  id        Int      @id @default(autoincrement())
-  email     String   @unique
-  username  String?
-  name      String?
-  posts     Post[]
+// Domain language: see CONTEXT.md. Shopping List persistence: see docs/adr/0002.
+// Every user-owned row carries the Clerk user id; nothing is shared between users.
+
+enum MealType {
+  @@type("pg/text@1")
+  BREAKFAST    = "breakfast"
+  LUNCH_DINNER = "lunch_dinner"
+  SNACK        = "snack"
+  PRE_WORKOUT  = "pre_workout"
+  DESSERT      = "dessert"
+}
+
+enum MainIngredient {
+  @@type("pg/text@1")
+  MEAT       = "meat"
+  FISH       = "fish"
+  VEGETARIAN = "vegetarian"
+}
+
+enum Aisle {
+  @@type("pg/text@1")
+  PROTEIN        = "protein"
+  CARBS          = "carbs"
+  LEGUMES        = "legumes"
+  VEGETABLE      = "vegetable"
+  FRUIT          = "fruit"
+  FATS_AND_DAIRY = "fats_and_dairy"
+  CONDIMENTS     = "condiments"
+  READY_MEALS    = "ready_meals"
+  OTHER          = "other"
+}
+
+// Fixed set; Quantities combine only when Units match (no conversion).
+enum Unit {
+  @@type("pg/text@1")
+  G     = "g"
+  KG    = "kg"
+  ML    = "ml"
+  L     = "l"
+  PIECE = "piece"
+  TBSP  = "tbsp"
+  TSP   = "tsp"
+  CUP   = "cup"
+  CLOVE = "clove"
+  CAN   = "can"
+  PINCH = "pinch"
+}
+
+model mixin Timestamps {
   createdAt TimestamptzString @default(now())
   updatedAt temporal.updatedAtString()
 }
 
-model Post {
-  id        Int      @id @default(autoincrement())
-  title     String
-  content   String?
-  author    User     @relation(fields: [authorId], references: [id])
-  authorId  Int
-  createdAt TimestamptzString @default(now())
-  updatedAt temporal.updatedAtString()
+model Recipe {
+  id             String             @id @default(uuid())
+  clerkId        String
+  title          String
+  notes          String?
+  sourceUrl      String?
+  thumbnailUrl   String?
+  mealTypes      MealType[]
+  mainIngredient MainIngredient?
+  isFavorite     Boolean            @default(false)
+  // Set when the user deletes the Recipe; it stays visible on past Planned Recipes.
+  archivedAt     TimestamptzString?
+  +Timestamps
+
+  @@index([clerkId])
+}
+
+// clerkId null = shared catalogue Ingredient; set = private to that user.
+model Ingredient {
+  id      String  @id @default(uuid())
+  clerkId String?
+  name    String
+  aisle   Aisle
+  +Timestamps
+
+  @@index([clerkId])
+}
+
+model RecipeIngredient {
+  recipeId     String
+  ingredientId String
+  amount       Float?
+  unit         Unit?
+  // The user's own text, e.g. "2 cloves, minced".
+  wording      String?
+  recipe       Recipe     @relation(fields: [recipeId], references: [id], onDelete: Cascade)
+  ingredient   Ingredient @relation(fields: [ingredientId], references: [id])
+
+  @@id([recipeId, ingredientId])
+  @@index([ingredientId])
+  @@check(expression: sql`("amount" IS NULL) = ("unit" IS NULL)`, name: "recipe_ingredient_amount_with_unit")
+}
+
+// A Plan is not stored: it is the Planned Recipes from a Sunday to the following Saturday.
+model PlannedRecipe {
+  id          String     @id @default(uuid())
+  clerkId     String
+  recipeId    String
+  // The evening it is cooked; covers that dinner and the next day's lunch.
+  date        DateString
+  cooked      Boolean    @default(false)
+  addedToList Boolean    @default(false)
+  recipe      Recipe     @relation(fields: [recipeId], references: [id])
+  +Timestamps
+
+  @@index([clerkId, date])
+  @@index([recipeId])
+}
+
+// Either an Ingredient line (ingredientId set) or an Extra Item (name + aisle set).
+model ShoppingListItem {
+  id           String      @id @default(uuid())
+  clerkId      String
+  ingredientId String?
+  name         String?
+  aisle        Aisle?
+  // A Recipe listed this Ingredient without a Quantity ("+ more").
+  unquantified Boolean     @default(false)
+  ticked       Boolean     @default(false)
+  ingredient   Ingredient? @relation(fields: [ingredientId], references: [id])
+  +Timestamps
+
+  @@index([clerkId])
+  @@index([ingredientId])
+  // Merging only targets the unticked line, so there is at most one per Ingredient.
+  @@index([clerkId, ingredientId], unique: true, where: sql`(NOT "ticked" AND "ingredientId" IS NOT NULL)`, name: "shopping_list_item_one_open_line")
+  @@check(expression: sql`(("ingredientId" IS NOT NULL AND "name" IS NULL AND "aisle" IS NULL) OR ("ingredientId" IS NULL AND "name" IS NOT NULL AND "aisle" IS NOT NULL))`, name: "shopping_list_item_ingredient_or_extra")
+}
+
+// Combined amount per Unit on an Ingredient line, e.g. 400 g and 1 cup of rice.
+model ShoppingListItemQuantity {
+  itemId String
+  unit   Unit
+  amount Float
+  item   ShoppingListItem @relation(fields: [itemId], references: [id], onDelete: Cascade)
+
+  @@id([itemId, unit])
+}
+
+// Which Recipes asked for a line; links are removed when a Recipe is archived.
+model ShoppingListItemRecipe {
+  itemId   String
+  recipeId String
+  item     ShoppingListItem @relation(fields: [itemId], references: [id], onDelete: Cascade)
+  recipe   Recipe           @relation(fields: [recipeId], references: [id], onDelete: Cascade)
+
+  @@id([itemId, recipeId])
+  @@index([recipeId])
 }

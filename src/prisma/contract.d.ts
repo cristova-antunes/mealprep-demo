@@ -18,9 +18,9 @@ import type {
 } from "@prisma/orm-postgres/contract/types";
 
 export type StorageHash =
-  StorageHashBase<"a51b4833fdaffe730572670ccc27dd89af7e0726ab3de7f428d21702d687cc15">;
+  StorageHashBase<"51dcabfaa403ec19a071fa67c7dc6e970886218395091a814722d674ab6b388b">;
 export type ExecutionHash =
-  ExecutionHashBase<"4e88564095b5e0ba7904ffdba3c563ef916d87688c8c483c67055f71a9194f0f">;
+  ExecutionHashBase<"27cf1ddb3d845451aded9d8d2f03162f41b9f9f1f7ede1c66ce6f8e67edb120a">;
 export type ProfileHash =
   ProfileHashBase<"3916f444a8a17ad749191acf9e08dad97d1a327b88c2f1d45d12f240296aa8b2">;
 
@@ -30,200 +30,68 @@ export type QueryOperationTypes = PgTargetQueryOps<CodecTypes>;
 export type AggregateTypes = {
   readonly avg: {
     readonly byCodec: {
-      readonly "pg/float@1": {
-        readonly output: "pg/float8@1";
-        readonly nullable: true;
-      };
-      readonly "pg/float4@1": {
-        readonly output: "pg/float8@1";
-        readonly nullable: true;
-      };
-      readonly "pg/float8@1": {
-        readonly output: "pg/float8@1";
-        readonly nullable: true;
-      };
-      readonly "pg/int@1": {
-        readonly output: "pg/float8@1";
-        readonly nullable: true;
-      };
-      readonly "pg/int2@1": {
-        readonly output: "pg/float8@1";
-        readonly nullable: true;
-      };
-      readonly "pg/int4@1": {
-        readonly output: "pg/float8@1";
-        readonly nullable: true;
-      };
-      readonly "pg/int8@1": {
-        readonly output: "pg/float8@1";
-        readonly nullable: true;
-      };
-      readonly "pg/int8number@1": {
-        readonly output: "pg/float8@1";
-        readonly nullable: true;
-      };
-      readonly "pg/interval@1": {
-        readonly output: "pg/interval@1";
-        readonly nullable: true;
-      };
-      readonly "pg/numeric@1": {
-        readonly output: "pg/numeric@1";
-        readonly nullable: true;
-      };
-      readonly "pg/time-string@1": {
-        readonly output: "pg/interval@1";
-        readonly nullable: true;
-      };
-      readonly "pg/time-temporal@1": {
-        readonly output: "pg/interval@1";
-        readonly nullable: true;
-      };
-      readonly "pg/unboundedint@1": {
-        readonly output: "pg/float8@1";
-        readonly nullable: true;
-      };
-      readonly "sql/float@1": {
-        readonly output: "pg/float8@1";
-        readonly nullable: true;
-      };
-      readonly "sql/int@1": {
-        readonly output: "pg/float8@1";
-        readonly nullable: true;
-      };
+      readonly "pg/float@1": { readonly output: "pg/float8@1"; readonly nullable: true };
+      readonly "pg/float4@1": { readonly output: "pg/float8@1"; readonly nullable: true };
+      readonly "pg/float8@1": { readonly output: "pg/float8@1"; readonly nullable: true };
+      readonly "pg/int@1": { readonly output: "pg/float8@1"; readonly nullable: true };
+      readonly "pg/int2@1": { readonly output: "pg/float8@1"; readonly nullable: true };
+      readonly "pg/int4@1": { readonly output: "pg/float8@1"; readonly nullable: true };
+      readonly "pg/int8@1": { readonly output: "pg/float8@1"; readonly nullable: true };
+      readonly "pg/int8number@1": { readonly output: "pg/float8@1"; readonly nullable: true };
+      readonly "pg/interval@1": { readonly output: "pg/interval@1"; readonly nullable: true };
+      readonly "pg/numeric@1": { readonly output: "pg/numeric@1"; readonly nullable: true };
+      readonly "pg/time-string@1": { readonly output: "pg/interval@1"; readonly nullable: true };
+      readonly "pg/time-temporal@1": { readonly output: "pg/interval@1"; readonly nullable: true };
+      readonly "pg/unboundedint@1": { readonly output: "pg/float8@1"; readonly nullable: true };
+      readonly "sql/float@1": { readonly output: "pg/float8@1"; readonly nullable: true };
+      readonly "sql/int@1": { readonly output: "pg/float8@1"; readonly nullable: true };
     };
   };
   readonly avgDecimal: {
     readonly byCodec: {
-      readonly "pg/int@1": {
-        readonly output: "pg/numeric@1";
-        readonly nullable: true;
-      };
-      readonly "pg/int2@1": {
-        readonly output: "pg/numeric@1";
-        readonly nullable: true;
-      };
-      readonly "pg/int4@1": {
-        readonly output: "pg/numeric@1";
-        readonly nullable: true;
-      };
-      readonly "pg/int8@1": {
-        readonly output: "pg/numeric@1";
-        readonly nullable: true;
-      };
-      readonly "pg/int8number@1": {
-        readonly output: "pg/numeric@1";
-        readonly nullable: true;
-      };
-      readonly "pg/numeric@1": {
-        readonly output: "pg/numeric@1";
-        readonly nullable: true;
-      };
-      readonly "pg/unboundedint@1": {
-        readonly output: "pg/numeric@1";
-        readonly nullable: true;
-      };
-      readonly "sql/int@1": {
-        readonly output: "pg/numeric@1";
-        readonly nullable: true;
-      };
+      readonly "pg/int@1": { readonly output: "pg/numeric@1"; readonly nullable: true };
+      readonly "pg/int2@1": { readonly output: "pg/numeric@1"; readonly nullable: true };
+      readonly "pg/int4@1": { readonly output: "pg/numeric@1"; readonly nullable: true };
+      readonly "pg/int8@1": { readonly output: "pg/numeric@1"; readonly nullable: true };
+      readonly "pg/int8number@1": { readonly output: "pg/numeric@1"; readonly nullable: true };
+      readonly "pg/numeric@1": { readonly output: "pg/numeric@1"; readonly nullable: true };
+      readonly "pg/unboundedint@1": { readonly output: "pg/numeric@1"; readonly nullable: true };
+      readonly "sql/int@1": { readonly output: "pg/numeric@1"; readonly nullable: true };
     };
   };
   readonly count: {
     readonly byCodec: {};
-    readonly withoutInput: {
-      readonly output: "pg/int8number@1";
-      readonly nullable: false;
-    };
-    readonly anyInput: {
-      readonly output: "pg/int8number@1";
-      readonly nullable: false;
-    };
+    readonly withoutInput: { readonly output: "pg/int8number@1"; readonly nullable: false };
+    readonly anyInput: { readonly output: "pg/int8number@1"; readonly nullable: false };
   };
   readonly countBigInt: {
     readonly byCodec: {};
-    readonly withoutInput: {
-      readonly output: "pg/int8@1";
-      readonly nullable: false;
-    };
-    readonly anyInput: {
-      readonly output: "pg/int8@1";
-      readonly nullable: false;
-    };
+    readonly withoutInput: { readonly output: "pg/int8@1"; readonly nullable: false };
+    readonly anyInput: { readonly output: "pg/int8@1"; readonly nullable: false };
   };
   readonly max: {
     readonly byCodec: {
-      readonly "pg/char@1": {
-        readonly output: "pg/char@1";
-        readonly nullable: true;
-      };
-      readonly "pg/date-string@1": {
-        readonly output: "pg/date-string@1";
-        readonly nullable: true;
-      };
+      readonly "pg/char@1": { readonly output: "pg/char@1"; readonly nullable: true };
+      readonly "pg/date-string@1": { readonly output: "pg/date-string@1"; readonly nullable: true };
       readonly "pg/date-temporal@1": {
         readonly output: "pg/date-temporal@1";
         readonly nullable: true;
       };
-      readonly "pg/enum@1": {
-        readonly output: "pg/enum@1";
-        readonly nullable: true;
-      };
-      readonly "pg/float@1": {
-        readonly output: "pg/float@1";
-        readonly nullable: true;
-      };
-      readonly "pg/float4@1": {
-        readonly output: "pg/float4@1";
-        readonly nullable: true;
-      };
-      readonly "pg/float8@1": {
-        readonly output: "pg/float8@1";
-        readonly nullable: true;
-      };
-      readonly "pg/inet@1": {
-        readonly output: "pg/inet@1";
-        readonly nullable: true;
-      };
-      readonly "pg/int@1": {
-        readonly output: "pg/int@1";
-        readonly nullable: true;
-      };
-      readonly "pg/int2@1": {
-        readonly output: "pg/int2@1";
-        readonly nullable: true;
-      };
-      readonly "pg/int4@1": {
-        readonly output: "pg/int4@1";
-        readonly nullable: true;
-      };
-      readonly "pg/int8@1": {
-        readonly output: "pg/int8@1";
-        readonly nullable: true;
-      };
-      readonly "pg/int8number@1": {
-        readonly output: "pg/int8number@1";
-        readonly nullable: true;
-      };
-      readonly "pg/interval@1": {
-        readonly output: "pg/interval@1";
-        readonly nullable: true;
-      };
-      readonly "pg/numeric@1": {
-        readonly output: "pg/numeric@1";
-        readonly nullable: true;
-      };
-      readonly "pg/text-array@1": {
-        readonly output: "pg/text-array@1";
-        readonly nullable: true;
-      };
-      readonly "pg/text@1": {
-        readonly output: "pg/text@1";
-        readonly nullable: true;
-      };
-      readonly "pg/time-string@1": {
-        readonly output: "pg/time-string@1";
-        readonly nullable: true;
-      };
+      readonly "pg/enum@1": { readonly output: "pg/enum@1"; readonly nullable: true };
+      readonly "pg/float@1": { readonly output: "pg/float@1"; readonly nullable: true };
+      readonly "pg/float4@1": { readonly output: "pg/float4@1"; readonly nullable: true };
+      readonly "pg/float8@1": { readonly output: "pg/float8@1"; readonly nullable: true };
+      readonly "pg/inet@1": { readonly output: "pg/inet@1"; readonly nullable: true };
+      readonly "pg/int@1": { readonly output: "pg/int@1"; readonly nullable: true };
+      readonly "pg/int2@1": { readonly output: "pg/int2@1"; readonly nullable: true };
+      readonly "pg/int4@1": { readonly output: "pg/int4@1"; readonly nullable: true };
+      readonly "pg/int8@1": { readonly output: "pg/int8@1"; readonly nullable: true };
+      readonly "pg/int8number@1": { readonly output: "pg/int8number@1"; readonly nullable: true };
+      readonly "pg/interval@1": { readonly output: "pg/interval@1"; readonly nullable: true };
+      readonly "pg/numeric@1": { readonly output: "pg/numeric@1"; readonly nullable: true };
+      readonly "pg/text-array@1": { readonly output: "pg/text-array@1"; readonly nullable: true };
+      readonly "pg/text@1": { readonly output: "pg/text@1"; readonly nullable: true };
+      readonly "pg/time-string@1": { readonly output: "pg/time-string@1"; readonly nullable: true };
       readonly "pg/time-temporal@1": {
         readonly output: "pg/time-temporal@1";
         readonly nullable: true;
@@ -248,114 +116,42 @@ export type AggregateTypes = {
         readonly output: "pg/timestamptz-temporal@1";
         readonly nullable: true;
       };
-      readonly "pg/timetz@1": {
-        readonly output: "pg/timetz@1";
-        readonly nullable: true;
-      };
+      readonly "pg/timetz@1": { readonly output: "pg/timetz@1"; readonly nullable: true };
       readonly "pg/unboundedint@1": {
         readonly output: "pg/unboundedint@1";
         readonly nullable: true;
       };
-      readonly "pg/varchar@1": {
-        readonly output: "pg/text@1";
-        readonly nullable: true;
-      };
-      readonly "sql/char@1": {
-        readonly output: "sql/char@1";
-        readonly nullable: true;
-      };
-      readonly "sql/float@1": {
-        readonly output: "sql/float@1";
-        readonly nullable: true;
-      };
-      readonly "sql/int@1": {
-        readonly output: "sql/int@1";
-        readonly nullable: true;
-      };
-      readonly "sql/text@1": {
-        readonly output: "sql/text@1";
-        readonly nullable: true;
-      };
-      readonly "sql/varchar@1": {
-        readonly output: "pg/text@1";
-        readonly nullable: true;
-      };
+      readonly "pg/varchar@1": { readonly output: "pg/text@1"; readonly nullable: true };
+      readonly "sql/char@1": { readonly output: "sql/char@1"; readonly nullable: true };
+      readonly "sql/float@1": { readonly output: "sql/float@1"; readonly nullable: true };
+      readonly "sql/int@1": { readonly output: "sql/int@1"; readonly nullable: true };
+      readonly "sql/text@1": { readonly output: "sql/text@1"; readonly nullable: true };
+      readonly "sql/varchar@1": { readonly output: "pg/text@1"; readonly nullable: true };
     };
   };
   readonly min: {
     readonly byCodec: {
-      readonly "pg/char@1": {
-        readonly output: "pg/char@1";
-        readonly nullable: true;
-      };
-      readonly "pg/date-string@1": {
-        readonly output: "pg/date-string@1";
-        readonly nullable: true;
-      };
+      readonly "pg/char@1": { readonly output: "pg/char@1"; readonly nullable: true };
+      readonly "pg/date-string@1": { readonly output: "pg/date-string@1"; readonly nullable: true };
       readonly "pg/date-temporal@1": {
         readonly output: "pg/date-temporal@1";
         readonly nullable: true;
       };
-      readonly "pg/enum@1": {
-        readonly output: "pg/enum@1";
-        readonly nullable: true;
-      };
-      readonly "pg/float@1": {
-        readonly output: "pg/float@1";
-        readonly nullable: true;
-      };
-      readonly "pg/float4@1": {
-        readonly output: "pg/float4@1";
-        readonly nullable: true;
-      };
-      readonly "pg/float8@1": {
-        readonly output: "pg/float8@1";
-        readonly nullable: true;
-      };
-      readonly "pg/inet@1": {
-        readonly output: "pg/inet@1";
-        readonly nullable: true;
-      };
-      readonly "pg/int@1": {
-        readonly output: "pg/int@1";
-        readonly nullable: true;
-      };
-      readonly "pg/int2@1": {
-        readonly output: "pg/int2@1";
-        readonly nullable: true;
-      };
-      readonly "pg/int4@1": {
-        readonly output: "pg/int4@1";
-        readonly nullable: true;
-      };
-      readonly "pg/int8@1": {
-        readonly output: "pg/int8@1";
-        readonly nullable: true;
-      };
-      readonly "pg/int8number@1": {
-        readonly output: "pg/int8number@1";
-        readonly nullable: true;
-      };
-      readonly "pg/interval@1": {
-        readonly output: "pg/interval@1";
-        readonly nullable: true;
-      };
-      readonly "pg/numeric@1": {
-        readonly output: "pg/numeric@1";
-        readonly nullable: true;
-      };
-      readonly "pg/text-array@1": {
-        readonly output: "pg/text-array@1";
-        readonly nullable: true;
-      };
-      readonly "pg/text@1": {
-        readonly output: "pg/text@1";
-        readonly nullable: true;
-      };
-      readonly "pg/time-string@1": {
-        readonly output: "pg/time-string@1";
-        readonly nullable: true;
-      };
+      readonly "pg/enum@1": { readonly output: "pg/enum@1"; readonly nullable: true };
+      readonly "pg/float@1": { readonly output: "pg/float@1"; readonly nullable: true };
+      readonly "pg/float4@1": { readonly output: "pg/float4@1"; readonly nullable: true };
+      readonly "pg/float8@1": { readonly output: "pg/float8@1"; readonly nullable: true };
+      readonly "pg/inet@1": { readonly output: "pg/inet@1"; readonly nullable: true };
+      readonly "pg/int@1": { readonly output: "pg/int@1"; readonly nullable: true };
+      readonly "pg/int2@1": { readonly output: "pg/int2@1"; readonly nullable: true };
+      readonly "pg/int4@1": { readonly output: "pg/int4@1"; readonly nullable: true };
+      readonly "pg/int8@1": { readonly output: "pg/int8@1"; readonly nullable: true };
+      readonly "pg/int8number@1": { readonly output: "pg/int8number@1"; readonly nullable: true };
+      readonly "pg/interval@1": { readonly output: "pg/interval@1"; readonly nullable: true };
+      readonly "pg/numeric@1": { readonly output: "pg/numeric@1"; readonly nullable: true };
+      readonly "pg/text-array@1": { readonly output: "pg/text-array@1"; readonly nullable: true };
+      readonly "pg/text@1": { readonly output: "pg/text@1"; readonly nullable: true };
+      readonly "pg/time-string@1": { readonly output: "pg/time-string@1"; readonly nullable: true };
       readonly "pg/time-temporal@1": {
         readonly output: "pg/time-temporal@1";
         readonly nullable: true;
@@ -380,134 +176,53 @@ export type AggregateTypes = {
         readonly output: "pg/timestamptz-temporal@1";
         readonly nullable: true;
       };
-      readonly "pg/timetz@1": {
-        readonly output: "pg/timetz@1";
-        readonly nullable: true;
-      };
+      readonly "pg/timetz@1": { readonly output: "pg/timetz@1"; readonly nullable: true };
       readonly "pg/unboundedint@1": {
         readonly output: "pg/unboundedint@1";
         readonly nullable: true;
       };
-      readonly "pg/varchar@1": {
-        readonly output: "pg/text@1";
-        readonly nullable: true;
-      };
-      readonly "sql/char@1": {
-        readonly output: "sql/char@1";
-        readonly nullable: true;
-      };
-      readonly "sql/float@1": {
-        readonly output: "sql/float@1";
-        readonly nullable: true;
-      };
-      readonly "sql/int@1": {
-        readonly output: "sql/int@1";
-        readonly nullable: true;
-      };
-      readonly "sql/text@1": {
-        readonly output: "sql/text@1";
-        readonly nullable: true;
-      };
-      readonly "sql/varchar@1": {
-        readonly output: "pg/text@1";
-        readonly nullable: true;
-      };
+      readonly "pg/varchar@1": { readonly output: "pg/text@1"; readonly nullable: true };
+      readonly "sql/char@1": { readonly output: "sql/char@1"; readonly nullable: true };
+      readonly "sql/float@1": { readonly output: "sql/float@1"; readonly nullable: true };
+      readonly "sql/int@1": { readonly output: "sql/int@1"; readonly nullable: true };
+      readonly "sql/text@1": { readonly output: "sql/text@1"; readonly nullable: true };
+      readonly "sql/varchar@1": { readonly output: "pg/text@1"; readonly nullable: true };
     };
   };
   readonly sum: {
     readonly byCodec: {
-      readonly "pg/float@1": {
-        readonly output: "pg/float8@1";
-        readonly nullable: true;
-      };
-      readonly "pg/float4@1": {
-        readonly output: "pg/float4@1";
-        readonly nullable: true;
-      };
-      readonly "pg/float8@1": {
-        readonly output: "pg/float8@1";
-        readonly nullable: true;
-      };
-      readonly "pg/int@1": {
-        readonly output: "pg/int8number@1";
-        readonly nullable: true;
-      };
-      readonly "pg/int2@1": {
-        readonly output: "pg/int8number@1";
-        readonly nullable: true;
-      };
-      readonly "pg/int4@1": {
-        readonly output: "pg/int8number@1";
-        readonly nullable: true;
-      };
-      readonly "pg/int8@1": {
-        readonly output: "pg/int8number@1";
-        readonly nullable: true;
-      };
-      readonly "pg/int8number@1": {
-        readonly output: "pg/int8number@1";
-        readonly nullable: true;
-      };
-      readonly "pg/interval@1": {
-        readonly output: "pg/interval@1";
-        readonly nullable: true;
-      };
-      readonly "pg/numeric@1": {
-        readonly output: "pg/numeric@1";
-        readonly nullable: true;
-      };
-      readonly "pg/time-string@1": {
-        readonly output: "pg/interval@1";
-        readonly nullable: true;
-      };
-      readonly "pg/time-temporal@1": {
-        readonly output: "pg/interval@1";
-        readonly nullable: true;
-      };
+      readonly "pg/float@1": { readonly output: "pg/float8@1"; readonly nullable: true };
+      readonly "pg/float4@1": { readonly output: "pg/float4@1"; readonly nullable: true };
+      readonly "pg/float8@1": { readonly output: "pg/float8@1"; readonly nullable: true };
+      readonly "pg/int@1": { readonly output: "pg/int8number@1"; readonly nullable: true };
+      readonly "pg/int2@1": { readonly output: "pg/int8number@1"; readonly nullable: true };
+      readonly "pg/int4@1": { readonly output: "pg/int8number@1"; readonly nullable: true };
+      readonly "pg/int8@1": { readonly output: "pg/int8number@1"; readonly nullable: true };
+      readonly "pg/int8number@1": { readonly output: "pg/int8number@1"; readonly nullable: true };
+      readonly "pg/interval@1": { readonly output: "pg/interval@1"; readonly nullable: true };
+      readonly "pg/numeric@1": { readonly output: "pg/numeric@1"; readonly nullable: true };
+      readonly "pg/time-string@1": { readonly output: "pg/interval@1"; readonly nullable: true };
+      readonly "pg/time-temporal@1": { readonly output: "pg/interval@1"; readonly nullable: true };
       readonly "pg/unboundedint@1": {
         readonly output: "pg/unboundedint@1";
         readonly nullable: true;
       };
-      readonly "sql/float@1": {
-        readonly output: "pg/float8@1";
-        readonly nullable: true;
-      };
-      readonly "sql/int@1": {
-        readonly output: "pg/int8number@1";
-        readonly nullable: true;
-      };
+      readonly "sql/float@1": { readonly output: "pg/float8@1"; readonly nullable: true };
+      readonly "sql/int@1": { readonly output: "pg/int8number@1"; readonly nullable: true };
     };
   };
   readonly sumBigInt: {
     readonly byCodec: {
-      readonly "pg/int@1": {
-        readonly output: "pg/int8@1";
-        readonly nullable: true;
-      };
-      readonly "pg/int2@1": {
-        readonly output: "pg/int8@1";
-        readonly nullable: true;
-      };
-      readonly "pg/int4@1": {
-        readonly output: "pg/int8@1";
-        readonly nullable: true;
-      };
-      readonly "pg/int8@1": {
-        readonly output: "pg/unboundedint@1";
-        readonly nullable: true;
-      };
-      readonly "pg/int8number@1": {
-        readonly output: "pg/unboundedint@1";
-        readonly nullable: true;
-      };
+      readonly "pg/int@1": { readonly output: "pg/int8@1"; readonly nullable: true };
+      readonly "pg/int2@1": { readonly output: "pg/int8@1"; readonly nullable: true };
+      readonly "pg/int4@1": { readonly output: "pg/int8@1"; readonly nullable: true };
+      readonly "pg/int8@1": { readonly output: "pg/unboundedint@1"; readonly nullable: true };
+      readonly "pg/int8number@1": { readonly output: "pg/unboundedint@1"; readonly nullable: true };
       readonly "pg/unboundedint@1": {
         readonly output: "pg/unboundedint@1";
         readonly nullable: true;
       };
-      readonly "sql/int@1": {
-        readonly output: "pg/int8@1";
-        readonly nullable: true;
-      };
+      readonly "sql/int@1": { readonly output: "pg/int8@1"; readonly nullable: true };
     };
   };
 };
@@ -519,112 +234,549 @@ type DefaultLiteralValue<CodecId extends string, Encoded> = CodecId extends keyo
 
 export type FieldOutputTypes = {
   readonly public: {
-    readonly Post: {
-      readonly authorId: CodecTypes["pg/int4@1"]["output"];
-      readonly content: CodecTypes["pg/text@1"]["output"] | null;
+    readonly Ingredient: {
+      readonly aisle:
+        | "protein"
+        | "carbs"
+        | "legumes"
+        | "vegetable"
+        | "fruit"
+        | "fats_and_dairy"
+        | "condiments"
+        | "ready_meals"
+        | "other";
+      readonly clerkId: CodecTypes["pg/text@1"]["output"] | null;
       readonly createdAt: CodecTypes["pg/timestamptz-string@1"]["output"];
-      readonly id: CodecTypes["pg/int4@1"]["output"];
+      readonly id: CodecTypes["pg/text@1"]["output"];
+      readonly name: CodecTypes["pg/text@1"]["output"];
+      readonly updatedAt: CodecTypes["pg/timestamptz-string@1"]["output"];
+    };
+    readonly PlannedRecipe: {
+      readonly addedToList: CodecTypes["pg/bool@1"]["output"];
+      readonly clerkId: CodecTypes["pg/text@1"]["output"];
+      readonly cooked: CodecTypes["pg/bool@1"]["output"];
+      readonly createdAt: CodecTypes["pg/timestamptz-string@1"]["output"];
+      readonly date: CodecTypes["pg/date-string@1"]["output"];
+      readonly id: CodecTypes["pg/text@1"]["output"];
+      readonly recipeId: CodecTypes["pg/text@1"]["output"];
+      readonly updatedAt: CodecTypes["pg/timestamptz-string@1"]["output"];
+    };
+    readonly Recipe: {
+      readonly archivedAt: CodecTypes["pg/timestamptz-string@1"]["output"] | null;
+      readonly clerkId: CodecTypes["pg/text@1"]["output"];
+      readonly createdAt: CodecTypes["pg/timestamptz-string@1"]["output"];
+      readonly id: CodecTypes["pg/text@1"]["output"];
+      readonly isFavorite: CodecTypes["pg/bool@1"]["output"];
+      readonly mainIngredient: "meat" | "fish" | "vegetarian" | null;
+      readonly mealTypes: ReadonlyArray<
+        "breakfast" | "lunch_dinner" | "snack" | "pre_workout" | "dessert"
+      >;
+      readonly notes: CodecTypes["pg/text@1"]["output"] | null;
+      readonly sourceUrl: CodecTypes["pg/text@1"]["output"] | null;
+      readonly thumbnailUrl: CodecTypes["pg/text@1"]["output"] | null;
       readonly title: CodecTypes["pg/text@1"]["output"];
       readonly updatedAt: CodecTypes["pg/timestamptz-string@1"]["output"];
     };
-    readonly User: {
+    readonly RecipeIngredient: {
+      readonly amount: CodecTypes["pg/float8@1"]["output"] | null;
+      readonly ingredientId: CodecTypes["pg/text@1"]["output"];
+      readonly recipeId: CodecTypes["pg/text@1"]["output"];
+      readonly unit:
+        | "g"
+        | "kg"
+        | "ml"
+        | "l"
+        | "piece"
+        | "tbsp"
+        | "tsp"
+        | "cup"
+        | "clove"
+        | "can"
+        | "pinch"
+        | null;
+      readonly wording: CodecTypes["pg/text@1"]["output"] | null;
+    };
+    readonly ShoppingListItem: {
+      readonly aisle:
+        | "protein"
+        | "carbs"
+        | "legumes"
+        | "vegetable"
+        | "fruit"
+        | "fats_and_dairy"
+        | "condiments"
+        | "ready_meals"
+        | "other"
+        | null;
+      readonly clerkId: CodecTypes["pg/text@1"]["output"];
       readonly createdAt: CodecTypes["pg/timestamptz-string@1"]["output"];
-      readonly email: CodecTypes["pg/text@1"]["output"];
-      readonly id: CodecTypes["pg/int4@1"]["output"];
+      readonly id: CodecTypes["pg/text@1"]["output"];
+      readonly ingredientId: CodecTypes["pg/text@1"]["output"] | null;
       readonly name: CodecTypes["pg/text@1"]["output"] | null;
+      readonly ticked: CodecTypes["pg/bool@1"]["output"];
+      readonly unquantified: CodecTypes["pg/bool@1"]["output"];
       readonly updatedAt: CodecTypes["pg/timestamptz-string@1"]["output"];
-      readonly username: CodecTypes["pg/text@1"]["output"] | null;
+    };
+    readonly ShoppingListItemQuantity: {
+      readonly amount: CodecTypes["pg/float8@1"]["output"];
+      readonly itemId: CodecTypes["pg/text@1"]["output"];
+      readonly unit:
+        | "g"
+        | "kg"
+        | "ml"
+        | "l"
+        | "piece"
+        | "tbsp"
+        | "tsp"
+        | "cup"
+        | "clove"
+        | "can"
+        | "pinch";
+    };
+    readonly ShoppingListItemRecipe: {
+      readonly itemId: CodecTypes["pg/text@1"]["output"];
+      readonly recipeId: CodecTypes["pg/text@1"]["output"];
     };
   };
 };
 export type FieldInputTypes = {
   readonly public: {
-    readonly Post: {
-      readonly authorId: CodecTypes["pg/int4@1"]["input"];
-      readonly content: CodecTypes["pg/text@1"]["input"] | null;
+    readonly Ingredient: {
+      readonly aisle:
+        | "protein"
+        | "carbs"
+        | "legumes"
+        | "vegetable"
+        | "fruit"
+        | "fats_and_dairy"
+        | "condiments"
+        | "ready_meals"
+        | "other";
+      readonly clerkId: CodecTypes["pg/text@1"]["input"] | null;
       readonly createdAt: CodecTypes["pg/timestamptz-string@1"]["input"];
-      readonly id: CodecTypes["pg/int4@1"]["input"];
+      readonly id: CodecTypes["pg/text@1"]["input"];
+      readonly name: CodecTypes["pg/text@1"]["input"];
+      readonly updatedAt: CodecTypes["pg/timestamptz-string@1"]["input"];
+    };
+    readonly PlannedRecipe: {
+      readonly addedToList: CodecTypes["pg/bool@1"]["input"];
+      readonly clerkId: CodecTypes["pg/text@1"]["input"];
+      readonly cooked: CodecTypes["pg/bool@1"]["input"];
+      readonly createdAt: CodecTypes["pg/timestamptz-string@1"]["input"];
+      readonly date: CodecTypes["pg/date-string@1"]["input"];
+      readonly id: CodecTypes["pg/text@1"]["input"];
+      readonly recipeId: CodecTypes["pg/text@1"]["input"];
+      readonly updatedAt: CodecTypes["pg/timestamptz-string@1"]["input"];
+    };
+    readonly Recipe: {
+      readonly archivedAt: CodecTypes["pg/timestamptz-string@1"]["input"] | null;
+      readonly clerkId: CodecTypes["pg/text@1"]["input"];
+      readonly createdAt: CodecTypes["pg/timestamptz-string@1"]["input"];
+      readonly id: CodecTypes["pg/text@1"]["input"];
+      readonly isFavorite: CodecTypes["pg/bool@1"]["input"];
+      readonly mainIngredient: "meat" | "fish" | "vegetarian" | null;
+      readonly mealTypes: ReadonlyArray<
+        "breakfast" | "lunch_dinner" | "snack" | "pre_workout" | "dessert"
+      >;
+      readonly notes: CodecTypes["pg/text@1"]["input"] | null;
+      readonly sourceUrl: CodecTypes["pg/text@1"]["input"] | null;
+      readonly thumbnailUrl: CodecTypes["pg/text@1"]["input"] | null;
       readonly title: CodecTypes["pg/text@1"]["input"];
       readonly updatedAt: CodecTypes["pg/timestamptz-string@1"]["input"];
     };
-    readonly User: {
+    readonly RecipeIngredient: {
+      readonly amount: CodecTypes["pg/float8@1"]["input"] | null;
+      readonly ingredientId: CodecTypes["pg/text@1"]["input"];
+      readonly recipeId: CodecTypes["pg/text@1"]["input"];
+      readonly unit:
+        | "g"
+        | "kg"
+        | "ml"
+        | "l"
+        | "piece"
+        | "tbsp"
+        | "tsp"
+        | "cup"
+        | "clove"
+        | "can"
+        | "pinch"
+        | null;
+      readonly wording: CodecTypes["pg/text@1"]["input"] | null;
+    };
+    readonly ShoppingListItem: {
+      readonly aisle:
+        | "protein"
+        | "carbs"
+        | "legumes"
+        | "vegetable"
+        | "fruit"
+        | "fats_and_dairy"
+        | "condiments"
+        | "ready_meals"
+        | "other"
+        | null;
+      readonly clerkId: CodecTypes["pg/text@1"]["input"];
       readonly createdAt: CodecTypes["pg/timestamptz-string@1"]["input"];
-      readonly email: CodecTypes["pg/text@1"]["input"];
-      readonly id: CodecTypes["pg/int4@1"]["input"];
+      readonly id: CodecTypes["pg/text@1"]["input"];
+      readonly ingredientId: CodecTypes["pg/text@1"]["input"] | null;
       readonly name: CodecTypes["pg/text@1"]["input"] | null;
+      readonly ticked: CodecTypes["pg/bool@1"]["input"];
+      readonly unquantified: CodecTypes["pg/bool@1"]["input"];
       readonly updatedAt: CodecTypes["pg/timestamptz-string@1"]["input"];
-      readonly username: CodecTypes["pg/text@1"]["input"] | null;
+    };
+    readonly ShoppingListItemQuantity: {
+      readonly amount: CodecTypes["pg/float8@1"]["input"];
+      readonly itemId: CodecTypes["pg/text@1"]["input"];
+      readonly unit:
+        | "g"
+        | "kg"
+        | "ml"
+        | "l"
+        | "piece"
+        | "tbsp"
+        | "tsp"
+        | "cup"
+        | "clove"
+        | "can"
+        | "pinch";
+    };
+    readonly ShoppingListItemRecipe: {
+      readonly itemId: CodecTypes["pg/text@1"]["input"];
+      readonly recipeId: CodecTypes["pg/text@1"]["input"];
     };
   };
 };
 export type StorageColumnTypes = {
   readonly public: {
-    readonly Post: {
-      readonly authorId: CodecTypes["pg/int4@1"]["output"];
-      readonly content: CodecTypes["pg/text@1"]["output"] | null;
+    readonly Ingredient: {
+      readonly aisle:
+        | "protein"
+        | "carbs"
+        | "legumes"
+        | "vegetable"
+        | "fruit"
+        | "fats_and_dairy"
+        | "condiments"
+        | "ready_meals"
+        | "other";
+      readonly clerkId: CodecTypes["pg/text@1"]["output"] | null;
       readonly createdAt: CodecTypes["pg/timestamptz-string@1"]["output"];
-      readonly id: CodecTypes["pg/int4@1"]["output"];
+      readonly id: CodecTypes["pg/text@1"]["output"];
+      readonly name: CodecTypes["pg/text@1"]["output"];
+      readonly updatedAt: CodecTypes["pg/timestamptz-string@1"]["output"];
+    };
+    readonly PlannedRecipe: {
+      readonly addedToList: CodecTypes["pg/bool@1"]["output"];
+      readonly clerkId: CodecTypes["pg/text@1"]["output"];
+      readonly cooked: CodecTypes["pg/bool@1"]["output"];
+      readonly createdAt: CodecTypes["pg/timestamptz-string@1"]["output"];
+      readonly date: CodecTypes["pg/date-string@1"]["output"];
+      readonly id: CodecTypes["pg/text@1"]["output"];
+      readonly recipeId: CodecTypes["pg/text@1"]["output"];
+      readonly updatedAt: CodecTypes["pg/timestamptz-string@1"]["output"];
+    };
+    readonly Recipe: {
+      readonly archivedAt: CodecTypes["pg/timestamptz-string@1"]["output"] | null;
+      readonly clerkId: CodecTypes["pg/text@1"]["output"];
+      readonly createdAt: CodecTypes["pg/timestamptz-string@1"]["output"];
+      readonly id: CodecTypes["pg/text@1"]["output"];
+      readonly isFavorite: CodecTypes["pg/bool@1"]["output"];
+      readonly mainIngredient: "meat" | "fish" | "vegetarian" | null;
+      readonly mealTypes: ReadonlyArray<
+        "breakfast" | "lunch_dinner" | "snack" | "pre_workout" | "dessert"
+      >;
+      readonly notes: CodecTypes["pg/text@1"]["output"] | null;
+      readonly sourceUrl: CodecTypes["pg/text@1"]["output"] | null;
+      readonly thumbnailUrl: CodecTypes["pg/text@1"]["output"] | null;
       readonly title: CodecTypes["pg/text@1"]["output"];
       readonly updatedAt: CodecTypes["pg/timestamptz-string@1"]["output"];
     };
-    readonly User: {
+    readonly RecipeIngredient: {
+      readonly amount: CodecTypes["pg/float8@1"]["output"] | null;
+      readonly ingredientId: CodecTypes["pg/text@1"]["output"];
+      readonly recipeId: CodecTypes["pg/text@1"]["output"];
+      readonly unit:
+        | "g"
+        | "kg"
+        | "ml"
+        | "l"
+        | "piece"
+        | "tbsp"
+        | "tsp"
+        | "cup"
+        | "clove"
+        | "can"
+        | "pinch"
+        | null;
+      readonly wording: CodecTypes["pg/text@1"]["output"] | null;
+    };
+    readonly ShoppingListItem: {
+      readonly aisle:
+        | "protein"
+        | "carbs"
+        | "legumes"
+        | "vegetable"
+        | "fruit"
+        | "fats_and_dairy"
+        | "condiments"
+        | "ready_meals"
+        | "other"
+        | null;
+      readonly clerkId: CodecTypes["pg/text@1"]["output"];
       readonly createdAt: CodecTypes["pg/timestamptz-string@1"]["output"];
-      readonly email: CodecTypes["pg/text@1"]["output"];
-      readonly id: CodecTypes["pg/int4@1"]["output"];
+      readonly id: CodecTypes["pg/text@1"]["output"];
+      readonly ingredientId: CodecTypes["pg/text@1"]["output"] | null;
       readonly name: CodecTypes["pg/text@1"]["output"] | null;
+      readonly ticked: CodecTypes["pg/bool@1"]["output"];
+      readonly unquantified: CodecTypes["pg/bool@1"]["output"];
       readonly updatedAt: CodecTypes["pg/timestamptz-string@1"]["output"];
-      readonly username: CodecTypes["pg/text@1"]["output"] | null;
+    };
+    readonly ShoppingListItemQuantity: {
+      readonly amount: CodecTypes["pg/float8@1"]["output"];
+      readonly itemId: CodecTypes["pg/text@1"]["output"];
+      readonly unit:
+        | "g"
+        | "kg"
+        | "ml"
+        | "l"
+        | "piece"
+        | "tbsp"
+        | "tsp"
+        | "cup"
+        | "clove"
+        | "can"
+        | "pinch";
+    };
+    readonly ShoppingListItemRecipe: {
+      readonly itemId: CodecTypes["pg/text@1"]["output"];
+      readonly recipeId: CodecTypes["pg/text@1"]["output"];
     };
   };
 };
 export type StorageColumnInputTypes = {
   readonly public: {
-    readonly Post: {
-      readonly authorId: CodecTypes["pg/int4@1"]["input"];
-      readonly content: CodecTypes["pg/text@1"]["input"] | null;
+    readonly Ingredient: {
+      readonly aisle:
+        | "protein"
+        | "carbs"
+        | "legumes"
+        | "vegetable"
+        | "fruit"
+        | "fats_and_dairy"
+        | "condiments"
+        | "ready_meals"
+        | "other";
+      readonly clerkId: CodecTypes["pg/text@1"]["input"] | null;
       readonly createdAt: CodecTypes["pg/timestamptz-string@1"]["input"];
-      readonly id: CodecTypes["pg/int4@1"]["input"];
+      readonly id: CodecTypes["pg/text@1"]["input"];
+      readonly name: CodecTypes["pg/text@1"]["input"];
+      readonly updatedAt: CodecTypes["pg/timestamptz-string@1"]["input"];
+    };
+    readonly PlannedRecipe: {
+      readonly addedToList: CodecTypes["pg/bool@1"]["input"];
+      readonly clerkId: CodecTypes["pg/text@1"]["input"];
+      readonly cooked: CodecTypes["pg/bool@1"]["input"];
+      readonly createdAt: CodecTypes["pg/timestamptz-string@1"]["input"];
+      readonly date: CodecTypes["pg/date-string@1"]["input"];
+      readonly id: CodecTypes["pg/text@1"]["input"];
+      readonly recipeId: CodecTypes["pg/text@1"]["input"];
+      readonly updatedAt: CodecTypes["pg/timestamptz-string@1"]["input"];
+    };
+    readonly Recipe: {
+      readonly archivedAt: CodecTypes["pg/timestamptz-string@1"]["input"] | null;
+      readonly clerkId: CodecTypes["pg/text@1"]["input"];
+      readonly createdAt: CodecTypes["pg/timestamptz-string@1"]["input"];
+      readonly id: CodecTypes["pg/text@1"]["input"];
+      readonly isFavorite: CodecTypes["pg/bool@1"]["input"];
+      readonly mainIngredient: "meat" | "fish" | "vegetarian" | null;
+      readonly mealTypes: ReadonlyArray<
+        "breakfast" | "lunch_dinner" | "snack" | "pre_workout" | "dessert"
+      >;
+      readonly notes: CodecTypes["pg/text@1"]["input"] | null;
+      readonly sourceUrl: CodecTypes["pg/text@1"]["input"] | null;
+      readonly thumbnailUrl: CodecTypes["pg/text@1"]["input"] | null;
       readonly title: CodecTypes["pg/text@1"]["input"];
       readonly updatedAt: CodecTypes["pg/timestamptz-string@1"]["input"];
     };
-    readonly User: {
+    readonly RecipeIngredient: {
+      readonly amount: CodecTypes["pg/float8@1"]["input"] | null;
+      readonly ingredientId: CodecTypes["pg/text@1"]["input"];
+      readonly recipeId: CodecTypes["pg/text@1"]["input"];
+      readonly unit:
+        | "g"
+        | "kg"
+        | "ml"
+        | "l"
+        | "piece"
+        | "tbsp"
+        | "tsp"
+        | "cup"
+        | "clove"
+        | "can"
+        | "pinch"
+        | null;
+      readonly wording: CodecTypes["pg/text@1"]["input"] | null;
+    };
+    readonly ShoppingListItem: {
+      readonly aisle:
+        | "protein"
+        | "carbs"
+        | "legumes"
+        | "vegetable"
+        | "fruit"
+        | "fats_and_dairy"
+        | "condiments"
+        | "ready_meals"
+        | "other"
+        | null;
+      readonly clerkId: CodecTypes["pg/text@1"]["input"];
       readonly createdAt: CodecTypes["pg/timestamptz-string@1"]["input"];
-      readonly email: CodecTypes["pg/text@1"]["input"];
-      readonly id: CodecTypes["pg/int4@1"]["input"];
+      readonly id: CodecTypes["pg/text@1"]["input"];
+      readonly ingredientId: CodecTypes["pg/text@1"]["input"] | null;
       readonly name: CodecTypes["pg/text@1"]["input"] | null;
+      readonly ticked: CodecTypes["pg/bool@1"]["input"];
+      readonly unquantified: CodecTypes["pg/bool@1"]["input"];
       readonly updatedAt: CodecTypes["pg/timestamptz-string@1"]["input"];
-      readonly username: CodecTypes["pg/text@1"]["input"] | null;
+    };
+    readonly ShoppingListItemQuantity: {
+      readonly amount: CodecTypes["pg/float8@1"]["input"];
+      readonly itemId: CodecTypes["pg/text@1"]["input"];
+      readonly unit:
+        | "g"
+        | "kg"
+        | "ml"
+        | "l"
+        | "piece"
+        | "tbsp"
+        | "tsp"
+        | "cup"
+        | "clove"
+        | "can"
+        | "pinch";
+    };
+    readonly ShoppingListItemRecipe: {
+      readonly itemId: CodecTypes["pg/text@1"]["input"];
+      readonly recipeId: CodecTypes["pg/text@1"]["input"];
     };
   };
 };
 
 export namespace Models {
-  export type public_Post = {
-    authorId: CodecTypes["pg/int4@1"]["output"];
-    content: CodecTypes["pg/text@1"]["output"] | null;
+  export type public_Ingredient = {
+    aisle:
+      | "protein"
+      | "carbs"
+      | "legumes"
+      | "vegetable"
+      | "fruit"
+      | "fats_and_dairy"
+      | "condiments"
+      | "ready_meals"
+      | "other";
+    clerkId: CodecTypes["pg/text@1"]["output"] | null;
     createdAt: CodecTypes["pg/timestamptz-string@1"]["output"];
-    id: CodecTypes["pg/int4@1"]["output"];
+    id: CodecTypes["pg/text@1"]["output"];
+    name: CodecTypes["pg/text@1"]["output"];
+    updatedAt: CodecTypes["pg/timestamptz-string@1"]["output"];
+    readonly [RelationKeys]?: never;
+  };
+  export type public_PlannedRecipe = {
+    addedToList: CodecTypes["pg/bool@1"]["output"];
+    clerkId: CodecTypes["pg/text@1"]["output"];
+    cooked: CodecTypes["pg/bool@1"]["output"];
+    createdAt: CodecTypes["pg/timestamptz-string@1"]["output"];
+    date: CodecTypes["pg/date-string@1"]["output"];
+    id: CodecTypes["pg/text@1"]["output"];
+    recipeId: CodecTypes["pg/text@1"]["output"];
+    updatedAt: CodecTypes["pg/timestamptz-string@1"]["output"];
+    recipe: public_Recipe;
+    readonly [RelationKeys]?: "recipe";
+  };
+  export type public_Recipe = {
+    archivedAt: CodecTypes["pg/timestamptz-string@1"]["output"] | null;
+    clerkId: CodecTypes["pg/text@1"]["output"];
+    createdAt: CodecTypes["pg/timestamptz-string@1"]["output"];
+    id: CodecTypes["pg/text@1"]["output"];
+    isFavorite: CodecTypes["pg/bool@1"]["output"];
+    mainIngredient: "meat" | "fish" | "vegetarian" | null;
+    mealTypes: ReadonlyArray<"breakfast" | "lunch_dinner" | "snack" | "pre_workout" | "dessert">;
+    notes: CodecTypes["pg/text@1"]["output"] | null;
+    sourceUrl: CodecTypes["pg/text@1"]["output"] | null;
+    thumbnailUrl: CodecTypes["pg/text@1"]["output"] | null;
     title: CodecTypes["pg/text@1"]["output"];
     updatedAt: CodecTypes["pg/timestamptz-string@1"]["output"];
-    author: public_User;
-    readonly [RelationKeys]?: "author";
+    readonly [RelationKeys]?: never;
   };
-  export type public_User = {
+  export type public_RecipeIngredient = {
+    amount: CodecTypes["pg/float8@1"]["output"] | null;
+    ingredientId: CodecTypes["pg/text@1"]["output"];
+    recipeId: CodecTypes["pg/text@1"]["output"];
+    unit:
+      | "g"
+      | "kg"
+      | "ml"
+      | "l"
+      | "piece"
+      | "tbsp"
+      | "tsp"
+      | "cup"
+      | "clove"
+      | "can"
+      | "pinch"
+      | null;
+    wording: CodecTypes["pg/text@1"]["output"] | null;
+    ingredient: public_Ingredient;
+    recipe: public_Recipe;
+    readonly [RelationKeys]?: "ingredient" | "recipe";
+  };
+  export type public_ShoppingListItem = {
+    aisle:
+      | "protein"
+      | "carbs"
+      | "legumes"
+      | "vegetable"
+      | "fruit"
+      | "fats_and_dairy"
+      | "condiments"
+      | "ready_meals"
+      | "other"
+      | null;
+    clerkId: CodecTypes["pg/text@1"]["output"];
     createdAt: CodecTypes["pg/timestamptz-string@1"]["output"];
-    email: CodecTypes["pg/text@1"]["output"];
-    id: CodecTypes["pg/int4@1"]["output"];
+    id: CodecTypes["pg/text@1"]["output"];
+    ingredientId: CodecTypes["pg/text@1"]["output"] | null;
     name: CodecTypes["pg/text@1"]["output"] | null;
+    ticked: CodecTypes["pg/bool@1"]["output"];
+    unquantified: CodecTypes["pg/bool@1"]["output"];
     updatedAt: CodecTypes["pg/timestamptz-string@1"]["output"];
-    username: CodecTypes["pg/text@1"]["output"] | null;
-    posts: public_Post[];
-    readonly [RelationKeys]?: "posts";
+    ingredient: public_Ingredient | null;
+    readonly [RelationKeys]?: "ingredient";
+  };
+  export type public_ShoppingListItemQuantity = {
+    amount: CodecTypes["pg/float8@1"]["output"];
+    itemId: CodecTypes["pg/text@1"]["output"];
+    unit: "g" | "kg" | "ml" | "l" | "piece" | "tbsp" | "tsp" | "cup" | "clove" | "can" | "pinch";
+    item: public_ShoppingListItem;
+    readonly [RelationKeys]?: "item";
+  };
+  export type public_ShoppingListItemRecipe = {
+    itemId: CodecTypes["pg/text@1"]["output"];
+    recipeId: CodecTypes["pg/text@1"]["output"];
+    item: public_ShoppingListItem;
+    recipe: public_Recipe;
+    readonly [RelationKeys]?: "item" | "recipe";
   };
 }
 
 export declare const models: {
   public: {
-    Post: Models.public_Post;
-    User: Models.public_User;
+    Ingredient: Models.public_Ingredient;
+    PlannedRecipe: Models.public_PlannedRecipe;
+    Recipe: Models.public_Recipe;
+    RecipeIngredient: Models.public_RecipeIngredient;
+    ShoppingListItem: Models.public_ShoppingListItem;
+    ShoppingListItemQuantity: Models.public_ShoppingListItemQuantity;
+    ShoppingListItemRecipe: Models.public_ShoppingListItemRecipe;
   };
 };
 
@@ -646,15 +798,15 @@ type ContractBase = Omit<
         readonly kind: "postgres-schema";
         readonly entries: {
           readonly table: {
-            readonly Post: {
+            readonly Ingredient: {
               columns: {
-                readonly authorId: {
-                  readonly dataType: "pg/int4";
-                  readonly codecId: "pg/int4@1";
+                readonly aisle: {
+                  readonly dataType: "pg/text";
+                  readonly codecId: "pg/text@1";
                   readonly nullable: false;
                   readonly many: false;
                 };
-                readonly content: {
+                readonly clerkId: {
                   readonly dataType: "pg/text";
                   readonly codecId: "pg/text@1";
                   readonly nullable: true;
@@ -664,20 +816,196 @@ type ContractBase = Omit<
                   readonly dataType: "pg/timestamptz";
                   readonly codecId: "pg/timestamptz-string@1";
                   readonly nullable: false;
-                  readonly default: {
-                    readonly kind: "function";
-                    readonly expression: "now()";
-                  };
+                  readonly default: { readonly kind: "function"; readonly expression: "now()" };
                   readonly many: false;
                 };
                 readonly id: {
-                  readonly dataType: "pg/int4";
-                  readonly codecId: "pg/int4@1";
+                  readonly dataType: "pg/text";
+                  readonly codecId: "pg/text@1";
+                  readonly nullable: false;
+                  readonly many: false;
+                };
+                readonly name: {
+                  readonly dataType: "pg/text";
+                  readonly codecId: "pg/text@1";
+                  readonly nullable: false;
+                  readonly many: false;
+                };
+                readonly updatedAt: {
+                  readonly dataType: "pg/timestamptz";
+                  readonly codecId: "pg/timestamptz-string@1";
+                  readonly nullable: false;
+                  readonly many: false;
+                };
+              };
+              primaryKey: { readonly columns: readonly ["id"] };
+              uniques: readonly [];
+              indexes: readonly [
+                {
+                  readonly name: "Ingredient_clerkId_idx_610a6a63";
+                  readonly prefix: "Ingredient_clerkId_idx";
+                  readonly columns: readonly ["clerkId"];
+                  readonly unique: false;
+                },
+              ];
+              foreignKeys: readonly [];
+            };
+            readonly PlannedRecipe: {
+              columns: {
+                readonly addedToList: {
+                  readonly dataType: "pg/bool";
+                  readonly codecId: "pg/bool@1";
                   readonly nullable: false;
                   readonly default: {
-                    readonly kind: "function";
-                    readonly expression: "autoincrement()";
+                    readonly kind: "literal";
+                    readonly value: DefaultLiteralValue<"pg/bool@1", false>;
                   };
+                  readonly many: false;
+                };
+                readonly clerkId: {
+                  readonly dataType: "pg/text";
+                  readonly codecId: "pg/text@1";
+                  readonly nullable: false;
+                  readonly many: false;
+                };
+                readonly cooked: {
+                  readonly dataType: "pg/bool";
+                  readonly codecId: "pg/bool@1";
+                  readonly nullable: false;
+                  readonly default: {
+                    readonly kind: "literal";
+                    readonly value: DefaultLiteralValue<"pg/bool@1", false>;
+                  };
+                  readonly many: false;
+                };
+                readonly createdAt: {
+                  readonly dataType: "pg/timestamptz";
+                  readonly codecId: "pg/timestamptz-string@1";
+                  readonly nullable: false;
+                  readonly default: { readonly kind: "function"; readonly expression: "now()" };
+                  readonly many: false;
+                };
+                readonly date: {
+                  readonly dataType: "pg/date";
+                  readonly codecId: "pg/date-string@1";
+                  readonly nullable: false;
+                  readonly many: false;
+                };
+                readonly id: {
+                  readonly dataType: "pg/text";
+                  readonly codecId: "pg/text@1";
+                  readonly nullable: false;
+                  readonly many: false;
+                };
+                readonly recipeId: {
+                  readonly dataType: "pg/text";
+                  readonly codecId: "pg/text@1";
+                  readonly nullable: false;
+                  readonly many: false;
+                };
+                readonly updatedAt: {
+                  readonly dataType: "pg/timestamptz";
+                  readonly codecId: "pg/timestamptz-string@1";
+                  readonly nullable: false;
+                  readonly many: false;
+                };
+              };
+              primaryKey: { readonly columns: readonly ["id"] };
+              uniques: readonly [];
+              indexes: readonly [
+                {
+                  readonly name: "PlannedRecipe_clerkId_date_idx_ee5b1f6c";
+                  readonly prefix: "PlannedRecipe_clerkId_date_idx";
+                  readonly columns: readonly ["clerkId", "date"];
+                  readonly unique: false;
+                },
+                {
+                  readonly name: "PlannedRecipe_recipeId_idx_037d8d32";
+                  readonly prefix: "PlannedRecipe_recipeId_idx";
+                  readonly columns: readonly ["recipeId"];
+                  readonly unique: false;
+                },
+              ];
+              foreignKeys: readonly [
+                {
+                  readonly source: {
+                    readonly namespaceId: "public" & NamespaceId;
+                    readonly tableName: "PlannedRecipe";
+                    readonly columns: readonly ["recipeId"];
+                  };
+                  readonly target: {
+                    readonly namespaceId: "public" & NamespaceId;
+                    readonly tableName: "Recipe";
+                    readonly columns: readonly ["id"];
+                  };
+                },
+              ];
+            };
+            readonly Recipe: {
+              columns: {
+                readonly archivedAt: {
+                  readonly dataType: "pg/timestamptz";
+                  readonly codecId: "pg/timestamptz-string@1";
+                  readonly nullable: true;
+                  readonly many: false;
+                };
+                readonly clerkId: {
+                  readonly dataType: "pg/text";
+                  readonly codecId: "pg/text@1";
+                  readonly nullable: false;
+                  readonly many: false;
+                };
+                readonly createdAt: {
+                  readonly dataType: "pg/timestamptz";
+                  readonly codecId: "pg/timestamptz-string@1";
+                  readonly nullable: false;
+                  readonly default: { readonly kind: "function"; readonly expression: "now()" };
+                  readonly many: false;
+                };
+                readonly id: {
+                  readonly dataType: "pg/text";
+                  readonly codecId: "pg/text@1";
+                  readonly nullable: false;
+                  readonly many: false;
+                };
+                readonly isFavorite: {
+                  readonly dataType: "pg/bool";
+                  readonly codecId: "pg/bool@1";
+                  readonly nullable: false;
+                  readonly default: {
+                    readonly kind: "literal";
+                    readonly value: DefaultLiteralValue<"pg/bool@1", false>;
+                  };
+                  readonly many: false;
+                };
+                readonly mainIngredient: {
+                  readonly dataType: "pg/text";
+                  readonly codecId: "pg/text@1";
+                  readonly nullable: true;
+                  readonly many: false;
+                };
+                readonly mealTypes: {
+                  readonly dataType: "pg/text";
+                  readonly codecId: "pg/text@1";
+                  readonly nullable: false;
+                  readonly many: { readonly elementNullable: false };
+                };
+                readonly notes: {
+                  readonly dataType: "pg/text";
+                  readonly codecId: "pg/text@1";
+                  readonly nullable: true;
+                  readonly many: false;
+                };
+                readonly sourceUrl: {
+                  readonly dataType: "pg/text";
+                  readonly codecId: "pg/text@1";
+                  readonly nullable: true;
+                  readonly many: false;
+                };
+                readonly thumbnailUrl: {
+                  readonly dataType: "pg/text";
+                  readonly codecId: "pg/text@1";
+                  readonly nullable: true;
                   readonly many: false;
                 };
                 readonly title: {
@@ -697,9 +1025,60 @@ type ContractBase = Omit<
               uniques: readonly [];
               indexes: readonly [
                 {
-                  readonly name: "Post_authorId_idx_e47547ed";
-                  readonly prefix: "Post_authorId_idx";
-                  readonly columns: readonly ["authorId"];
+                  readonly name: "Recipe_clerkId_idx_610a6a63";
+                  readonly prefix: "Recipe_clerkId_idx";
+                  readonly columns: readonly ["clerkId"];
+                  readonly unique: false;
+                },
+              ];
+              foreignKeys: readonly [];
+            };
+            readonly RecipeIngredient: {
+              columns: {
+                readonly amount: {
+                  readonly dataType: "pg/float8";
+                  readonly codecId: "pg/float8@1";
+                  readonly nullable: true;
+                  readonly many: false;
+                };
+                readonly ingredientId: {
+                  readonly dataType: "pg/text";
+                  readonly codecId: "pg/text@1";
+                  readonly nullable: false;
+                  readonly many: false;
+                };
+                readonly recipeId: {
+                  readonly dataType: "pg/text";
+                  readonly codecId: "pg/text@1";
+                  readonly nullable: false;
+                  readonly many: false;
+                };
+                readonly unit: {
+                  readonly dataType: "pg/text";
+                  readonly codecId: "pg/text@1";
+                  readonly nullable: true;
+                  readonly many: false;
+                };
+                readonly wording: {
+                  readonly dataType: "pg/text";
+                  readonly codecId: "pg/text@1";
+                  readonly nullable: true;
+                  readonly many: false;
+                };
+              };
+              primaryKey: { readonly columns: readonly ["recipeId", "ingredientId"] };
+              uniques: readonly [];
+              indexes: readonly [
+                {
+                  readonly name: "RecipeIngredient_ingredientId_idx_0bb57833";
+                  readonly prefix: "RecipeIngredient_ingredientId_idx";
+                  readonly columns: readonly ["ingredientId"];
+                  readonly unique: false;
+                },
+                {
+                  readonly name: "RecipeIngredient_recipeId_idx_037d8d32";
+                  readonly prefix: "RecipeIngredient_recipeId_idx";
+                  readonly columns: readonly ["recipeId"];
                   readonly unique: false;
                 },
               ];
@@ -707,43 +1086,60 @@ type ContractBase = Omit<
                 {
                   readonly source: {
                     readonly namespaceId: "public" & NamespaceId;
-                    readonly tableName: "Post";
-                    readonly columns: readonly ["authorId"];
+                    readonly tableName: "RecipeIngredient";
+                    readonly columns: readonly ["recipeId"];
                   };
                   readonly target: {
                     readonly namespaceId: "public" & NamespaceId;
-                    readonly tableName: "User";
+                    readonly tableName: "Recipe";
+                    readonly columns: readonly ["id"];
+                  };
+                },
+                {
+                  readonly source: {
+                    readonly namespaceId: "public" & NamespaceId;
+                    readonly tableName: "RecipeIngredient";
+                    readonly columns: readonly ["ingredientId"];
+                  };
+                  readonly target: {
+                    readonly namespaceId: "public" & NamespaceId;
+                    readonly tableName: "Ingredient";
                     readonly columns: readonly ["id"];
                   };
                 },
               ];
             };
-            readonly User: {
+            readonly ShoppingListItem: {
               columns: {
-                readonly createdAt: {
-                  readonly dataType: "pg/timestamptz";
-                  readonly codecId: "pg/timestamptz-string@1";
-                  readonly nullable: false;
-                  readonly default: {
-                    readonly kind: "function";
-                    readonly expression: "now()";
-                  };
+                readonly aisle: {
+                  readonly dataType: "pg/text";
+                  readonly codecId: "pg/text@1";
+                  readonly nullable: true;
                   readonly many: false;
                 };
-                readonly email: {
+                readonly clerkId: {
                   readonly dataType: "pg/text";
                   readonly codecId: "pg/text@1";
                   readonly nullable: false;
                   readonly many: false;
                 };
-                readonly id: {
-                  readonly dataType: "pg/int4";
-                  readonly codecId: "pg/int4@1";
+                readonly createdAt: {
+                  readonly dataType: "pg/timestamptz";
+                  readonly codecId: "pg/timestamptz-string@1";
                   readonly nullable: false;
-                  readonly default: {
-                    readonly kind: "function";
-                    readonly expression: "autoincrement()";
-                  };
+                  readonly default: { readonly kind: "function"; readonly expression: "now()" };
+                  readonly many: false;
+                };
+                readonly id: {
+                  readonly dataType: "pg/text";
+                  readonly codecId: "pg/text@1";
+                  readonly nullable: false;
+                  readonly many: false;
+                };
+                readonly ingredientId: {
+                  readonly dataType: "pg/text";
+                  readonly codecId: "pg/text@1";
+                  readonly nullable: true;
                   readonly many: false;
                 };
                 readonly name: {
@@ -752,23 +1148,220 @@ type ContractBase = Omit<
                   readonly nullable: true;
                   readonly many: false;
                 };
+                readonly ticked: {
+                  readonly dataType: "pg/bool";
+                  readonly codecId: "pg/bool@1";
+                  readonly nullable: false;
+                  readonly default: {
+                    readonly kind: "literal";
+                    readonly value: DefaultLiteralValue<"pg/bool@1", false>;
+                  };
+                  readonly many: false;
+                };
+                readonly unquantified: {
+                  readonly dataType: "pg/bool";
+                  readonly codecId: "pg/bool@1";
+                  readonly nullable: false;
+                  readonly default: {
+                    readonly kind: "literal";
+                    readonly value: DefaultLiteralValue<"pg/bool@1", false>;
+                  };
+                  readonly many: false;
+                };
                 readonly updatedAt: {
                   readonly dataType: "pg/timestamptz";
                   readonly codecId: "pg/timestamptz-string@1";
                   readonly nullable: false;
                   readonly many: false;
                 };
-                readonly username: {
+              };
+              primaryKey: { readonly columns: readonly ["id"] };
+              uniques: readonly [];
+              indexes: readonly [
+                {
+                  readonly name: "ShoppingListItem_clerkId_idx_610a6a63";
+                  readonly prefix: "ShoppingListItem_clerkId_idx";
+                  readonly columns: readonly ["clerkId"];
+                  readonly unique: false;
+                },
+                {
+                  readonly name: "ShoppingListItem_ingredientId_idx_0bb57833";
+                  readonly prefix: "ShoppingListItem_ingredientId_idx";
+                  readonly columns: readonly ["ingredientId"];
+                  readonly unique: false;
+                },
+                {
+                  readonly name: "shopping_list_item_one_open_line_12fc15aa";
+                  readonly prefix: "shopping_list_item_one_open_line";
+                  readonly columns: readonly ["clerkId", "ingredientId"];
+                  readonly where: '(NOT "ticked" AND "ingredientId" IS NOT NULL)';
+                  readonly unique: true;
+                },
+              ];
+              foreignKeys: readonly [
+                {
+                  readonly source: {
+                    readonly namespaceId: "public" & NamespaceId;
+                    readonly tableName: "ShoppingListItem";
+                    readonly columns: readonly ["ingredientId"];
+                  };
+                  readonly target: {
+                    readonly namespaceId: "public" & NamespaceId;
+                    readonly tableName: "Ingredient";
+                    readonly columns: readonly ["id"];
+                  };
+                },
+              ];
+            };
+            readonly ShoppingListItemQuantity: {
+              columns: {
+                readonly amount: {
+                  readonly dataType: "pg/float8";
+                  readonly codecId: "pg/float8@1";
+                  readonly nullable: false;
+                  readonly many: false;
+                };
+                readonly itemId: {
                   readonly dataType: "pg/text";
                   readonly codecId: "pg/text@1";
-                  readonly nullable: true;
+                  readonly nullable: false;
+                  readonly many: false;
+                };
+                readonly unit: {
+                  readonly dataType: "pg/text";
+                  readonly codecId: "pg/text@1";
+                  readonly nullable: false;
                   readonly many: false;
                 };
               };
-              primaryKey: { readonly columns: readonly ["id"] };
-              uniques: readonly [{ readonly columns: readonly ["email"] }];
-              indexes: readonly [];
-              foreignKeys: readonly [];
+              primaryKey: { readonly columns: readonly ["itemId", "unit"] };
+              uniques: readonly [];
+              indexes: readonly [
+                {
+                  readonly name: "ShoppingListItemQuantity_itemId_idx_41357140";
+                  readonly prefix: "ShoppingListItemQuantity_itemId_idx";
+                  readonly columns: readonly ["itemId"];
+                  readonly unique: false;
+                },
+              ];
+              foreignKeys: readonly [
+                {
+                  readonly source: {
+                    readonly namespaceId: "public" & NamespaceId;
+                    readonly tableName: "ShoppingListItemQuantity";
+                    readonly columns: readonly ["itemId"];
+                  };
+                  readonly target: {
+                    readonly namespaceId: "public" & NamespaceId;
+                    readonly tableName: "ShoppingListItem";
+                    readonly columns: readonly ["id"];
+                  };
+                },
+              ];
+            };
+            readonly ShoppingListItemRecipe: {
+              columns: {
+                readonly itemId: {
+                  readonly dataType: "pg/text";
+                  readonly codecId: "pg/text@1";
+                  readonly nullable: false;
+                  readonly many: false;
+                };
+                readonly recipeId: {
+                  readonly dataType: "pg/text";
+                  readonly codecId: "pg/text@1";
+                  readonly nullable: false;
+                  readonly many: false;
+                };
+              };
+              primaryKey: { readonly columns: readonly ["itemId", "recipeId"] };
+              uniques: readonly [];
+              indexes: readonly [
+                {
+                  readonly name: "ShoppingListItemRecipe_itemId_idx_41357140";
+                  readonly prefix: "ShoppingListItemRecipe_itemId_idx";
+                  readonly columns: readonly ["itemId"];
+                  readonly unique: false;
+                },
+                {
+                  readonly name: "ShoppingListItemRecipe_recipeId_idx_037d8d32";
+                  readonly prefix: "ShoppingListItemRecipe_recipeId_idx";
+                  readonly columns: readonly ["recipeId"];
+                  readonly unique: false;
+                },
+              ];
+              foreignKeys: readonly [
+                {
+                  readonly source: {
+                    readonly namespaceId: "public" & NamespaceId;
+                    readonly tableName: "ShoppingListItemRecipe";
+                    readonly columns: readonly ["itemId"];
+                  };
+                  readonly target: {
+                    readonly namespaceId: "public" & NamespaceId;
+                    readonly tableName: "ShoppingListItem";
+                    readonly columns: readonly ["id"];
+                  };
+                },
+                {
+                  readonly source: {
+                    readonly namespaceId: "public" & NamespaceId;
+                    readonly tableName: "ShoppingListItemRecipe";
+                    readonly columns: readonly ["recipeId"];
+                  };
+                  readonly target: {
+                    readonly namespaceId: "public" & NamespaceId;
+                    readonly tableName: "Recipe";
+                    readonly columns: readonly ["id"];
+                  };
+                },
+              ];
+            };
+          };
+          readonly valueSet: {
+            readonly Aisle: {
+              readonly kind: "valueSet";
+              readonly values: readonly [
+                "protein",
+                "carbs",
+                "legumes",
+                "vegetable",
+                "fruit",
+                "fats_and_dairy",
+                "condiments",
+                "ready_meals",
+                "other",
+              ];
+            };
+            readonly MainIngredient: {
+              readonly kind: "valueSet";
+              readonly values: readonly ["meat", "fish", "vegetarian"];
+            };
+            readonly MealType: {
+              readonly kind: "valueSet";
+              readonly values: readonly [
+                "breakfast",
+                "lunch_dinner",
+                "snack",
+                "pre_workout",
+                "dessert",
+              ];
+            };
+            readonly Unit: {
+              readonly kind: "valueSet";
+              readonly values: readonly [
+                "g",
+                "kg",
+                "ml",
+                "l",
+                "piece",
+                "tbsp",
+                "tsp",
+                "cup",
+                "clove",
+                "can",
+                "pinch",
+              ];
             };
           };
         };
@@ -781,34 +1374,45 @@ type ContractBase = Omit<
   readonly target: "postgres";
   readonly targetFamily: "sql";
   readonly roots: {
-    readonly Post: {
+    readonly Ingredient: {
       readonly namespace: "public" & NamespaceId;
-      readonly model: "Post";
+      readonly model: "Ingredient";
     };
-    readonly User: {
+    readonly PlannedRecipe: {
       readonly namespace: "public" & NamespaceId;
-      readonly model: "User";
+      readonly model: "PlannedRecipe";
+    };
+    readonly Recipe: { readonly namespace: "public" & NamespaceId; readonly model: "Recipe" };
+    readonly RecipeIngredient: {
+      readonly namespace: "public" & NamespaceId;
+      readonly model: "RecipeIngredient";
+    };
+    readonly ShoppingListItem: {
+      readonly namespace: "public" & NamespaceId;
+      readonly model: "ShoppingListItem";
+    };
+    readonly ShoppingListItemQuantity: {
+      readonly namespace: "public" & NamespaceId;
+      readonly model: "ShoppingListItemQuantity";
+    };
+    readonly ShoppingListItemRecipe: {
+      readonly namespace: "public" & NamespaceId;
+      readonly model: "ShoppingListItemRecipe";
     };
   };
   readonly domain: {
     readonly namespaces: {
       readonly public: {
         readonly models: {
-          readonly Post: {
+          readonly Ingredient: {
             readonly fields: {
-              readonly authorId: {
+              readonly aisle: {
                 readonly nullable: false;
-                readonly type: {
-                  readonly kind: "scalar";
-                  readonly codecId: "pg/int4@1";
-                };
+                readonly type: { readonly kind: "scalar"; readonly codecId: "pg/text@1" };
               };
-              readonly content: {
+              readonly clerkId: {
                 readonly nullable: true;
-                readonly type: {
-                  readonly kind: "scalar";
-                  readonly codecId: "pg/text@1";
-                };
+                readonly type: { readonly kind: "scalar"; readonly codecId: "pg/text@1" };
               };
               readonly createdAt: {
                 readonly nullable: false;
@@ -819,17 +1423,66 @@ type ContractBase = Omit<
               };
               readonly id: {
                 readonly nullable: false;
-                readonly type: {
-                  readonly kind: "scalar";
-                  readonly codecId: "pg/int4@1";
-                };
+                readonly type: { readonly kind: "scalar"; readonly codecId: "pg/text@1" };
               };
-              readonly title: {
+              readonly name: {
+                readonly nullable: false;
+                readonly type: { readonly kind: "scalar"; readonly codecId: "pg/text@1" };
+              };
+              readonly updatedAt: {
                 readonly nullable: false;
                 readonly type: {
                   readonly kind: "scalar";
-                  readonly codecId: "pg/text@1";
+                  readonly codecId: "pg/timestamptz-string@1";
                 };
+              };
+            };
+            readonly relations: Record<string, never>;
+            readonly storage: {
+              readonly table: "Ingredient";
+              readonly namespaceId: "public";
+              readonly fields: {
+                readonly aisle: { readonly column: "aisle" };
+                readonly clerkId: { readonly column: "clerkId" };
+                readonly createdAt: { readonly column: "createdAt" };
+                readonly id: { readonly column: "id" };
+                readonly name: { readonly column: "name" };
+                readonly updatedAt: { readonly column: "updatedAt" };
+              };
+            };
+          };
+          readonly PlannedRecipe: {
+            readonly fields: {
+              readonly addedToList: {
+                readonly nullable: false;
+                readonly type: { readonly kind: "scalar"; readonly codecId: "pg/bool@1" };
+              };
+              readonly clerkId: {
+                readonly nullable: false;
+                readonly type: { readonly kind: "scalar"; readonly codecId: "pg/text@1" };
+              };
+              readonly cooked: {
+                readonly nullable: false;
+                readonly type: { readonly kind: "scalar"; readonly codecId: "pg/bool@1" };
+              };
+              readonly createdAt: {
+                readonly nullable: false;
+                readonly type: {
+                  readonly kind: "scalar";
+                  readonly codecId: "pg/timestamptz-string@1";
+                };
+              };
+              readonly date: {
+                readonly nullable: false;
+                readonly type: { readonly kind: "scalar"; readonly codecId: "pg/date-string@1" };
+              };
+              readonly id: {
+                readonly nullable: false;
+                readonly type: { readonly kind: "scalar"; readonly codecId: "pg/text@1" };
+              };
+              readonly recipeId: {
+                readonly nullable: false;
+                readonly type: { readonly kind: "scalar"; readonly codecId: "pg/text@1" };
               };
               readonly updatedAt: {
                 readonly nullable: false;
@@ -840,34 +1493,47 @@ type ContractBase = Omit<
               };
             };
             readonly relations: {
-              readonly author: {
+              readonly recipe: {
                 readonly to: {
                   readonly namespace: "public" & NamespaceId;
-                  readonly model: "User";
+                  readonly model: "Recipe";
                 };
                 readonly cardinality: "N:1";
                 readonly nullable: false;
                 readonly on: {
-                  readonly localFields: readonly ["authorId"];
+                  readonly localFields: readonly ["recipeId"];
                   readonly targetFields: readonly ["id"];
                 };
               };
             };
             readonly storage: {
-              readonly table: "Post";
+              readonly table: "PlannedRecipe";
               readonly namespaceId: "public";
               readonly fields: {
-                readonly authorId: { readonly column: "authorId" };
-                readonly content: { readonly column: "content" };
+                readonly addedToList: { readonly column: "addedToList" };
+                readonly clerkId: { readonly column: "clerkId" };
+                readonly cooked: { readonly column: "cooked" };
                 readonly createdAt: { readonly column: "createdAt" };
+                readonly date: { readonly column: "date" };
                 readonly id: { readonly column: "id" };
-                readonly title: { readonly column: "title" };
+                readonly recipeId: { readonly column: "recipeId" };
                 readonly updatedAt: { readonly column: "updatedAt" };
               };
             };
           };
-          readonly User: {
+          readonly Recipe: {
             readonly fields: {
+              readonly archivedAt: {
+                readonly nullable: true;
+                readonly type: {
+                  readonly kind: "scalar";
+                  readonly codecId: "pg/timestamptz-string@1";
+                };
+              };
+              readonly clerkId: {
+                readonly nullable: false;
+                readonly type: { readonly kind: "scalar"; readonly codecId: "pg/text@1" };
+              };
               readonly createdAt: {
                 readonly nullable: false;
                 readonly type: {
@@ -875,26 +1541,38 @@ type ContractBase = Omit<
                   readonly codecId: "pg/timestamptz-string@1";
                 };
               };
-              readonly email: {
-                readonly nullable: false;
-                readonly type: {
-                  readonly kind: "scalar";
-                  readonly codecId: "pg/text@1";
-                };
-              };
               readonly id: {
                 readonly nullable: false;
-                readonly type: {
-                  readonly kind: "scalar";
-                  readonly codecId: "pg/int4@1";
-                };
+                readonly type: { readonly kind: "scalar"; readonly codecId: "pg/text@1" };
               };
-              readonly name: {
+              readonly isFavorite: {
+                readonly nullable: false;
+                readonly type: { readonly kind: "scalar"; readonly codecId: "pg/bool@1" };
+              };
+              readonly mainIngredient: {
                 readonly nullable: true;
-                readonly type: {
-                  readonly kind: "scalar";
-                  readonly codecId: "pg/text@1";
-                };
+                readonly type: { readonly kind: "scalar"; readonly codecId: "pg/text@1" };
+              };
+              readonly mealTypes: {
+                readonly nullable: false;
+                readonly type: { readonly kind: "scalar"; readonly codecId: "pg/text@1" };
+                readonly many: { readonly elementNullable: false };
+              };
+              readonly notes: {
+                readonly nullable: true;
+                readonly type: { readonly kind: "scalar"; readonly codecId: "pg/text@1" };
+              };
+              readonly sourceUrl: {
+                readonly nullable: true;
+                readonly type: { readonly kind: "scalar"; readonly codecId: "pg/text@1" };
+              };
+              readonly thumbnailUrl: {
+                readonly nullable: true;
+                readonly type: { readonly kind: "scalar"; readonly codecId: "pg/text@1" };
+              };
+              readonly title: {
+                readonly nullable: false;
+                readonly type: { readonly kind: "scalar"; readonly codecId: "pg/text@1" };
               };
               readonly updatedAt: {
                 readonly nullable: false;
@@ -903,40 +1581,336 @@ type ContractBase = Omit<
                   readonly codecId: "pg/timestamptz-string@1";
                 };
               };
-              readonly username: {
+            };
+            readonly relations: Record<string, never>;
+            readonly storage: {
+              readonly table: "Recipe";
+              readonly namespaceId: "public";
+              readonly fields: {
+                readonly archivedAt: { readonly column: "archivedAt" };
+                readonly clerkId: { readonly column: "clerkId" };
+                readonly createdAt: { readonly column: "createdAt" };
+                readonly id: { readonly column: "id" };
+                readonly isFavorite: { readonly column: "isFavorite" };
+                readonly mainIngredient: { readonly column: "mainIngredient" };
+                readonly mealTypes: { readonly column: "mealTypes" };
+                readonly notes: { readonly column: "notes" };
+                readonly sourceUrl: { readonly column: "sourceUrl" };
+                readonly thumbnailUrl: { readonly column: "thumbnailUrl" };
+                readonly title: { readonly column: "title" };
+                readonly updatedAt: { readonly column: "updatedAt" };
+              };
+            };
+          };
+          readonly RecipeIngredient: {
+            readonly fields: {
+              readonly amount: {
                 readonly nullable: true;
-                readonly type: {
-                  readonly kind: "scalar";
-                  readonly codecId: "pg/text@1";
-                };
+                readonly type: { readonly kind: "scalar"; readonly codecId: "pg/float8@1" };
+              };
+              readonly ingredientId: {
+                readonly nullable: false;
+                readonly type: { readonly kind: "scalar"; readonly codecId: "pg/text@1" };
+              };
+              readonly recipeId: {
+                readonly nullable: false;
+                readonly type: { readonly kind: "scalar"; readonly codecId: "pg/text@1" };
+              };
+              readonly unit: {
+                readonly nullable: true;
+                readonly type: { readonly kind: "scalar"; readonly codecId: "pg/text@1" };
+              };
+              readonly wording: {
+                readonly nullable: true;
+                readonly type: { readonly kind: "scalar"; readonly codecId: "pg/text@1" };
               };
             };
             readonly relations: {
-              readonly posts: {
+              readonly ingredient: {
                 readonly to: {
                   readonly namespace: "public" & NamespaceId;
-                  readonly model: "Post";
+                  readonly model: "Ingredient";
                 };
-                readonly cardinality: "1:N";
+                readonly cardinality: "N:1";
+                readonly nullable: false;
                 readonly on: {
-                  readonly localFields: readonly ["id"];
-                  readonly targetFields: readonly ["authorId"];
+                  readonly localFields: readonly ["ingredientId"];
+                  readonly targetFields: readonly ["id"];
+                };
+              };
+              readonly recipe: {
+                readonly to: {
+                  readonly namespace: "public" & NamespaceId;
+                  readonly model: "Recipe";
+                };
+                readonly cardinality: "N:1";
+                readonly nullable: false;
+                readonly on: {
+                  readonly localFields: readonly ["recipeId"];
+                  readonly targetFields: readonly ["id"];
                 };
               };
             };
             readonly storage: {
-              readonly table: "User";
+              readonly table: "RecipeIngredient";
               readonly namespaceId: "public";
               readonly fields: {
-                readonly createdAt: { readonly column: "createdAt" };
-                readonly email: { readonly column: "email" };
-                readonly id: { readonly column: "id" };
-                readonly name: { readonly column: "name" };
-                readonly updatedAt: { readonly column: "updatedAt" };
-                readonly username: { readonly column: "username" };
+                readonly amount: { readonly column: "amount" };
+                readonly ingredientId: { readonly column: "ingredientId" };
+                readonly recipeId: { readonly column: "recipeId" };
+                readonly unit: { readonly column: "unit" };
+                readonly wording: { readonly column: "wording" };
               };
             };
           };
+          readonly ShoppingListItem: {
+            readonly fields: {
+              readonly aisle: {
+                readonly nullable: true;
+                readonly type: { readonly kind: "scalar"; readonly codecId: "pg/text@1" };
+              };
+              readonly clerkId: {
+                readonly nullable: false;
+                readonly type: { readonly kind: "scalar"; readonly codecId: "pg/text@1" };
+              };
+              readonly createdAt: {
+                readonly nullable: false;
+                readonly type: {
+                  readonly kind: "scalar";
+                  readonly codecId: "pg/timestamptz-string@1";
+                };
+              };
+              readonly id: {
+                readonly nullable: false;
+                readonly type: { readonly kind: "scalar"; readonly codecId: "pg/text@1" };
+              };
+              readonly ingredientId: {
+                readonly nullable: true;
+                readonly type: { readonly kind: "scalar"; readonly codecId: "pg/text@1" };
+              };
+              readonly name: {
+                readonly nullable: true;
+                readonly type: { readonly kind: "scalar"; readonly codecId: "pg/text@1" };
+              };
+              readonly ticked: {
+                readonly nullable: false;
+                readonly type: { readonly kind: "scalar"; readonly codecId: "pg/bool@1" };
+              };
+              readonly unquantified: {
+                readonly nullable: false;
+                readonly type: { readonly kind: "scalar"; readonly codecId: "pg/bool@1" };
+              };
+              readonly updatedAt: {
+                readonly nullable: false;
+                readonly type: {
+                  readonly kind: "scalar";
+                  readonly codecId: "pg/timestamptz-string@1";
+                };
+              };
+            };
+            readonly relations: {
+              readonly ingredient: {
+                readonly to: {
+                  readonly namespace: "public" & NamespaceId;
+                  readonly model: "Ingredient";
+                };
+                readonly cardinality: "N:1";
+                readonly nullable: true;
+                readonly on: {
+                  readonly localFields: readonly ["ingredientId"];
+                  readonly targetFields: readonly ["id"];
+                };
+              };
+            };
+            readonly storage: {
+              readonly table: "ShoppingListItem";
+              readonly namespaceId: "public";
+              readonly fields: {
+                readonly aisle: { readonly column: "aisle" };
+                readonly clerkId: { readonly column: "clerkId" };
+                readonly createdAt: { readonly column: "createdAt" };
+                readonly id: { readonly column: "id" };
+                readonly ingredientId: { readonly column: "ingredientId" };
+                readonly name: { readonly column: "name" };
+                readonly ticked: { readonly column: "ticked" };
+                readonly unquantified: { readonly column: "unquantified" };
+                readonly updatedAt: { readonly column: "updatedAt" };
+              };
+            };
+          };
+          readonly ShoppingListItemQuantity: {
+            readonly fields: {
+              readonly amount: {
+                readonly nullable: false;
+                readonly type: { readonly kind: "scalar"; readonly codecId: "pg/float8@1" };
+              };
+              readonly itemId: {
+                readonly nullable: false;
+                readonly type: { readonly kind: "scalar"; readonly codecId: "pg/text@1" };
+              };
+              readonly unit: {
+                readonly nullable: false;
+                readonly type: { readonly kind: "scalar"; readonly codecId: "pg/text@1" };
+              };
+            };
+            readonly relations: {
+              readonly item: {
+                readonly to: {
+                  readonly namespace: "public" & NamespaceId;
+                  readonly model: "ShoppingListItem";
+                };
+                readonly cardinality: "N:1";
+                readonly nullable: false;
+                readonly on: {
+                  readonly localFields: readonly ["itemId"];
+                  readonly targetFields: readonly ["id"];
+                };
+              };
+            };
+            readonly storage: {
+              readonly table: "ShoppingListItemQuantity";
+              readonly namespaceId: "public";
+              readonly fields: {
+                readonly amount: { readonly column: "amount" };
+                readonly itemId: { readonly column: "itemId" };
+                readonly unit: { readonly column: "unit" };
+              };
+            };
+          };
+          readonly ShoppingListItemRecipe: {
+            readonly fields: {
+              readonly itemId: {
+                readonly nullable: false;
+                readonly type: { readonly kind: "scalar"; readonly codecId: "pg/text@1" };
+              };
+              readonly recipeId: {
+                readonly nullable: false;
+                readonly type: { readonly kind: "scalar"; readonly codecId: "pg/text@1" };
+              };
+            };
+            readonly relations: {
+              readonly item: {
+                readonly to: {
+                  readonly namespace: "public" & NamespaceId;
+                  readonly model: "ShoppingListItem";
+                };
+                readonly cardinality: "N:1";
+                readonly nullable: false;
+                readonly on: {
+                  readonly localFields: readonly ["itemId"];
+                  readonly targetFields: readonly ["id"];
+                };
+              };
+              readonly recipe: {
+                readonly to: {
+                  readonly namespace: "public" & NamespaceId;
+                  readonly model: "Recipe";
+                };
+                readonly cardinality: "N:1";
+                readonly nullable: false;
+                readonly on: {
+                  readonly localFields: readonly ["recipeId"];
+                  readonly targetFields: readonly ["id"];
+                };
+              };
+            };
+            readonly storage: {
+              readonly table: "ShoppingListItemRecipe";
+              readonly namespaceId: "public";
+              readonly fields: {
+                readonly itemId: { readonly column: "itemId" };
+                readonly recipeId: { readonly column: "recipeId" };
+              };
+            };
+          };
+        };
+        readonly enum: {
+          readonly Aisle: {
+            readonly codecId: "pg/text@1";
+            readonly members: readonly [
+              { readonly name: "PROTEIN"; readonly value: "protein" },
+              { readonly name: "CARBS"; readonly value: "carbs" },
+              { readonly name: "LEGUMES"; readonly value: "legumes" },
+              { readonly name: "VEGETABLE"; readonly value: "vegetable" },
+              { readonly name: "FRUIT"; readonly value: "fruit" },
+              { readonly name: "FATS_AND_DAIRY"; readonly value: "fats_and_dairy" },
+              { readonly name: "CONDIMENTS"; readonly value: "condiments" },
+              { readonly name: "READY_MEALS"; readonly value: "ready_meals" },
+              { readonly name: "OTHER"; readonly value: "other" },
+            ];
+          };
+          readonly MainIngredient: {
+            readonly codecId: "pg/text@1";
+            readonly members: readonly [
+              { readonly name: "MEAT"; readonly value: "meat" },
+              { readonly name: "FISH"; readonly value: "fish" },
+              { readonly name: "VEGETARIAN"; readonly value: "vegetarian" },
+            ];
+          };
+          readonly MealType: {
+            readonly codecId: "pg/text@1";
+            readonly members: readonly [
+              { readonly name: "BREAKFAST"; readonly value: "breakfast" },
+              { readonly name: "LUNCH_DINNER"; readonly value: "lunch_dinner" },
+              { readonly name: "SNACK"; readonly value: "snack" },
+              { readonly name: "PRE_WORKOUT"; readonly value: "pre_workout" },
+              { readonly name: "DESSERT"; readonly value: "dessert" },
+            ];
+          };
+          readonly Unit: {
+            readonly codecId: "pg/text@1";
+            readonly members: readonly [
+              { readonly name: "G"; readonly value: "g" },
+              { readonly name: "KG"; readonly value: "kg" },
+              { readonly name: "ML"; readonly value: "ml" },
+              { readonly name: "L"; readonly value: "l" },
+              { readonly name: "PIECE"; readonly value: "piece" },
+              { readonly name: "TBSP"; readonly value: "tbsp" },
+              { readonly name: "TSP"; readonly value: "tsp" },
+              { readonly name: "CUP"; readonly value: "cup" },
+              { readonly name: "CLOVE"; readonly value: "clove" },
+              { readonly name: "CAN"; readonly value: "can" },
+              { readonly name: "PINCH"; readonly value: "pinch" },
+            ];
+          };
+        };
+        readonly enumMemberTypes?: {
+          readonly Aisle: readonly [
+            { readonly name: "PROTEIN"; readonly value: "protein" },
+            { readonly name: "CARBS"; readonly value: "carbs" },
+            { readonly name: "LEGUMES"; readonly value: "legumes" },
+            { readonly name: "VEGETABLE"; readonly value: "vegetable" },
+            { readonly name: "FRUIT"; readonly value: "fruit" },
+            { readonly name: "FATS_AND_DAIRY"; readonly value: "fats_and_dairy" },
+            { readonly name: "CONDIMENTS"; readonly value: "condiments" },
+            { readonly name: "READY_MEALS"; readonly value: "ready_meals" },
+            { readonly name: "OTHER"; readonly value: "other" },
+          ];
+          readonly MainIngredient: readonly [
+            { readonly name: "MEAT"; readonly value: "meat" },
+            { readonly name: "FISH"; readonly value: "fish" },
+            { readonly name: "VEGETARIAN"; readonly value: "vegetarian" },
+          ];
+          readonly MealType: readonly [
+            { readonly name: "BREAKFAST"; readonly value: "breakfast" },
+            { readonly name: "LUNCH_DINNER"; readonly value: "lunch_dinner" },
+            { readonly name: "SNACK"; readonly value: "snack" },
+            { readonly name: "PRE_WORKOUT"; readonly value: "pre_workout" },
+            { readonly name: "DESSERT"; readonly value: "dessert" },
+          ];
+          readonly Unit: readonly [
+            { readonly name: "G"; readonly value: "g" },
+            { readonly name: "KG"; readonly value: "kg" },
+            { readonly name: "ML"; readonly value: "ml" },
+            { readonly name: "L"; readonly value: "l" },
+            { readonly name: "PIECE"; readonly value: "piece" },
+            { readonly name: "TBSP"; readonly value: "tbsp" },
+            { readonly name: "TSP"; readonly value: "tsp" },
+            { readonly name: "CUP"; readonly value: "cup" },
+            { readonly name: "CLOVE"; readonly value: "clove" },
+            { readonly name: "CAN"; readonly value: "can" },
+            { readonly name: "PINCH"; readonly value: "pinch" },
+          ];
         };
       };
     };
@@ -974,31 +1948,69 @@ type ContractBase = Omit<
     readonly mutations: {
       readonly defaults: readonly [
         {
-          readonly onCreate: {
-            readonly id: "timestampNow";
-            readonly kind: "generator";
-          };
-          readonly onUpdate: {
-            readonly id: "timestampNow";
-            readonly kind: "generator";
-          };
+          readonly onCreate: { readonly id: "uuidv4"; readonly kind: "generator" };
           readonly ref: {
-            readonly entry: "Post";
+            readonly entry: "Ingredient";
+            readonly field: "id";
+            readonly namespace: "public";
+          };
+        },
+        {
+          readonly onCreate: { readonly id: "timestampNow"; readonly kind: "generator" };
+          readonly onUpdate: { readonly id: "timestampNow"; readonly kind: "generator" };
+          readonly ref: {
+            readonly entry: "Ingredient";
             readonly field: "updatedAt";
             readonly namespace: "public";
           };
         },
         {
-          readonly onCreate: {
-            readonly id: "timestampNow";
-            readonly kind: "generator";
-          };
-          readonly onUpdate: {
-            readonly id: "timestampNow";
-            readonly kind: "generator";
-          };
+          readonly onCreate: { readonly id: "uuidv4"; readonly kind: "generator" };
           readonly ref: {
-            readonly entry: "User";
+            readonly entry: "PlannedRecipe";
+            readonly field: "id";
+            readonly namespace: "public";
+          };
+        },
+        {
+          readonly onCreate: { readonly id: "timestampNow"; readonly kind: "generator" };
+          readonly onUpdate: { readonly id: "timestampNow"; readonly kind: "generator" };
+          readonly ref: {
+            readonly entry: "PlannedRecipe";
+            readonly field: "updatedAt";
+            readonly namespace: "public";
+          };
+        },
+        {
+          readonly onCreate: { readonly id: "uuidv4"; readonly kind: "generator" };
+          readonly ref: {
+            readonly entry: "Recipe";
+            readonly field: "id";
+            readonly namespace: "public";
+          };
+        },
+        {
+          readonly onCreate: { readonly id: "timestampNow"; readonly kind: "generator" };
+          readonly onUpdate: { readonly id: "timestampNow"; readonly kind: "generator" };
+          readonly ref: {
+            readonly entry: "Recipe";
+            readonly field: "updatedAt";
+            readonly namespace: "public";
+          };
+        },
+        {
+          readonly onCreate: { readonly id: "uuidv4"; readonly kind: "generator" };
+          readonly ref: {
+            readonly entry: "ShoppingListItem";
+            readonly field: "id";
+            readonly namespace: "public";
+          };
+        },
+        {
+          readonly onCreate: { readonly id: "timestampNow"; readonly kind: "generator" };
+          readonly onUpdate: { readonly id: "timestampNow"; readonly kind: "generator" };
+          readonly ref: {
+            readonly entry: "ShoppingListItem";
             readonly field: "updatedAt";
             readonly namespace: "public";
           };

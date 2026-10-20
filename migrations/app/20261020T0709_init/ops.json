@@ -1,0 +1,1054 @@
+[
+  {
+    "id": "schema.public",
+    "label": "Create schema \"public\"",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres"
+    },
+    "precheck": [],
+    "execute": [
+      {
+        "description": "Create schema \"public\"",
+        "sql": "CREATE SCHEMA IF NOT EXISTS \"public\"",
+        "params": []
+      }
+    ],
+    "postcheck": []
+  },
+  {
+    "id": "table.Ingredient",
+    "label": "Create table \"Ingredient\"",
+    "summary": "Creates table \"Ingredient\"",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "public",
+        "objectType": "table",
+        "name": "Ingredient"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure table \"Ingredient\" does not exist",
+        "sql": "SELECT (to_regclass($1)) IS NULL AS \"result\"",
+        "params": [
+          "\"public\".\"Ingredient\""
+        ]
+      }
+    ],
+    "execute": [
+      {
+        "description": "create table \"Ingredient\"",
+        "sql": "CREATE TABLE \"public\".\"Ingredient\" (\n  \"aisle\" text NOT NULL,\n  \"clerkId\" text,\n  \"createdAt\" timestamptz DEFAULT (now()) NOT NULL,\n  \"id\" text NOT NULL,\n  \"name\" text NOT NULL,\n  \"updatedAt\" timestamptz NOT NULL,\n  PRIMARY KEY (\"id\"),\n  CONSTRAINT \"Ingredient_aisle_check_12e4f0df\" CHECK (\"aisle\" IN ('protein', 'carbs', 'legumes', 'vegetable', 'fruit', 'fats_and_dairy', 'condiments', 'ready_meals', 'other'))\n)",
+        "params": []
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify table \"Ingredient\" exists",
+        "sql": "SELECT (to_regclass($1)) IS NOT NULL AS \"result\"",
+        "params": [
+          "\"public\".\"Ingredient\""
+        ]
+      }
+    ]
+  },
+  {
+    "id": "table.PlannedRecipe",
+    "label": "Create table \"PlannedRecipe\"",
+    "summary": "Creates table \"PlannedRecipe\"",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "public",
+        "objectType": "table",
+        "name": "PlannedRecipe"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure table \"PlannedRecipe\" does not exist",
+        "sql": "SELECT (to_regclass($1)) IS NULL AS \"result\"",
+        "params": [
+          "\"public\".\"PlannedRecipe\""
+        ]
+      }
+    ],
+    "execute": [
+      {
+        "description": "create table \"PlannedRecipe\"",
+        "sql": "CREATE TABLE \"public\".\"PlannedRecipe\" (\n  \"addedToList\" bool DEFAULT false NOT NULL,\n  \"clerkId\" text NOT NULL,\n  \"cooked\" bool DEFAULT false NOT NULL,\n  \"createdAt\" timestamptz DEFAULT (now()) NOT NULL,\n  \"date\" date NOT NULL,\n  \"id\" text NOT NULL,\n  \"recipeId\" text NOT NULL,\n  \"updatedAt\" timestamptz NOT NULL,\n  PRIMARY KEY (\"id\")\n)",
+        "params": []
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify table \"PlannedRecipe\" exists",
+        "sql": "SELECT (to_regclass($1)) IS NOT NULL AS \"result\"",
+        "params": [
+          "\"public\".\"PlannedRecipe\""
+        ]
+      }
+    ]
+  },
+  {
+    "id": "table.Recipe",
+    "label": "Create table \"Recipe\"",
+    "summary": "Creates table \"Recipe\"",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "public",
+        "objectType": "table",
+        "name": "Recipe"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure table \"Recipe\" does not exist",
+        "sql": "SELECT (to_regclass($1)) IS NULL AS \"result\"",
+        "params": [
+          "\"public\".\"Recipe\""
+        ]
+      }
+    ],
+    "execute": [
+      {
+        "description": "create table \"Recipe\"",
+        "sql": "CREATE TABLE \"public\".\"Recipe\" (\n  \"archivedAt\" timestamptz,\n  \"clerkId\" text NOT NULL,\n  \"createdAt\" timestamptz DEFAULT (now()) NOT NULL,\n  \"id\" text NOT NULL,\n  \"isFavorite\" bool DEFAULT false NOT NULL,\n  \"mainIngredient\" text,\n  \"mealTypes\" text[] NOT NULL,\n  \"notes\" text,\n  \"sourceUrl\" text,\n  \"thumbnailUrl\" text,\n  \"title\" text NOT NULL,\n  \"updatedAt\" timestamptz NOT NULL,\n  PRIMARY KEY (\"id\"),\n  CONSTRAINT \"Recipe_mainIngredient_check_c4d60415\" CHECK (\"mainIngredient\" IN ('meat', 'fish', 'vegetarian')),\n  CONSTRAINT \"Recipe_mealTypes_check_aecbc17a\" CHECK (array_remove(\"mealTypes\", NULL) <@ '{\"breakfast\",\"lunch_dinner\",\"snack\",\"pre_workout\",\"dessert\"}'),\n  CONSTRAINT \"Recipe_mealTypes_elem_not_null_87226d38\" CHECK (array_position(\"mealTypes\", NULL) IS NULL)\n)",
+        "params": []
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify table \"Recipe\" exists",
+        "sql": "SELECT (to_regclass($1)) IS NOT NULL AS \"result\"",
+        "params": [
+          "\"public\".\"Recipe\""
+        ]
+      }
+    ]
+  },
+  {
+    "id": "table.RecipeIngredient",
+    "label": "Create table \"RecipeIngredient\"",
+    "summary": "Creates table \"RecipeIngredient\"",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "public",
+        "objectType": "table",
+        "name": "RecipeIngredient"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure table \"RecipeIngredient\" does not exist",
+        "sql": "SELECT (to_regclass($1)) IS NULL AS \"result\"",
+        "params": [
+          "\"public\".\"RecipeIngredient\""
+        ]
+      }
+    ],
+    "execute": [
+      {
+        "description": "create table \"RecipeIngredient\"",
+        "sql": "CREATE TABLE \"public\".\"RecipeIngredient\" (\n  \"amount\" float8,\n  \"ingredientId\" text NOT NULL,\n  \"recipeId\" text NOT NULL,\n  \"unit\" text,\n  \"wording\" text,\n  PRIMARY KEY (\"recipeId\", \"ingredientId\"),\n  CONSTRAINT \"RecipeIngredient_unit_check_bee72bda\" CHECK (\"unit\" IN ('g', 'kg', 'ml', 'l', 'piece', 'tbsp', 'tsp', 'cup', 'clove', 'can', 'pinch')),\n  CONSTRAINT \"recipe_ingredient_amount_with_unit_c620e484\" CHECK ((\"amount\" IS NULL) = (\"unit\" IS NULL))\n)",
+        "params": []
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify table \"RecipeIngredient\" exists",
+        "sql": "SELECT (to_regclass($1)) IS NOT NULL AS \"result\"",
+        "params": [
+          "\"public\".\"RecipeIngredient\""
+        ]
+      }
+    ]
+  },
+  {
+    "id": "table.ShoppingListItem",
+    "label": "Create table \"ShoppingListItem\"",
+    "summary": "Creates table \"ShoppingListItem\"",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "public",
+        "objectType": "table",
+        "name": "ShoppingListItem"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure table \"ShoppingListItem\" does not exist",
+        "sql": "SELECT (to_regclass($1)) IS NULL AS \"result\"",
+        "params": [
+          "\"public\".\"ShoppingListItem\""
+        ]
+      }
+    ],
+    "execute": [
+      {
+        "description": "create table \"ShoppingListItem\"",
+        "sql": "CREATE TABLE \"public\".\"ShoppingListItem\" (\n  \"aisle\" text,\n  \"clerkId\" text NOT NULL,\n  \"createdAt\" timestamptz DEFAULT (now()) NOT NULL,\n  \"id\" text NOT NULL,\n  \"ingredientId\" text,\n  \"name\" text,\n  \"ticked\" bool DEFAULT false NOT NULL,\n  \"unquantified\" bool DEFAULT false NOT NULL,\n  \"updatedAt\" timestamptz NOT NULL,\n  PRIMARY KEY (\"id\"),\n  CONSTRAINT \"ShoppingListItem_aisle_check_12e4f0df\" CHECK (\"aisle\" IN ('protein', 'carbs', 'legumes', 'vegetable', 'fruit', 'fats_and_dairy', 'condiments', 'ready_meals', 'other')),\n  CONSTRAINT \"shopping_list_item_ingredient_or_extra_4d0c2c86\" CHECK (((\"ingredientId\" IS NOT NULL AND \"name\" IS NULL AND \"aisle\" IS NULL) OR (\"ingredientId\" IS NULL AND \"name\" IS NOT NULL AND \"aisle\" IS NOT NULL)))\n)",
+        "params": []
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify table \"ShoppingListItem\" exists",
+        "sql": "SELECT (to_regclass($1)) IS NOT NULL AS \"result\"",
+        "params": [
+          "\"public\".\"ShoppingListItem\""
+        ]
+      }
+    ]
+  },
+  {
+    "id": "table.ShoppingListItemQuantity",
+    "label": "Create table \"ShoppingListItemQuantity\"",
+    "summary": "Creates table \"ShoppingListItemQuantity\"",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "public",
+        "objectType": "table",
+        "name": "ShoppingListItemQuantity"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure table \"ShoppingListItemQuantity\" does not exist",
+        "sql": "SELECT (to_regclass($1)) IS NULL AS \"result\"",
+        "params": [
+          "\"public\".\"ShoppingListItemQuantity\""
+        ]
+      }
+    ],
+    "execute": [
+      {
+        "description": "create table \"ShoppingListItemQuantity\"",
+        "sql": "CREATE TABLE \"public\".\"ShoppingListItemQuantity\" (\n  \"amount\" float8 NOT NULL,\n  \"itemId\" text NOT NULL,\n  \"unit\" text NOT NULL,\n  PRIMARY KEY (\"itemId\", \"unit\"),\n  CONSTRAINT \"ShoppingListItemQuantity_unit_check_bee72bda\" CHECK (\"unit\" IN ('g', 'kg', 'ml', 'l', 'piece', 'tbsp', 'tsp', 'cup', 'clove', 'can', 'pinch'))\n)",
+        "params": []
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify table \"ShoppingListItemQuantity\" exists",
+        "sql": "SELECT (to_regclass($1)) IS NOT NULL AS \"result\"",
+        "params": [
+          "\"public\".\"ShoppingListItemQuantity\""
+        ]
+      }
+    ]
+  },
+  {
+    "id": "table.ShoppingListItemRecipe",
+    "label": "Create table \"ShoppingListItemRecipe\"",
+    "summary": "Creates table \"ShoppingListItemRecipe\"",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "public",
+        "objectType": "table",
+        "name": "ShoppingListItemRecipe"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure table \"ShoppingListItemRecipe\" does not exist",
+        "sql": "SELECT (to_regclass($1)) IS NULL AS \"result\"",
+        "params": [
+          "\"public\".\"ShoppingListItemRecipe\""
+        ]
+      }
+    ],
+    "execute": [
+      {
+        "description": "create table \"ShoppingListItemRecipe\"",
+        "sql": "CREATE TABLE \"public\".\"ShoppingListItemRecipe\" (\n  \"itemId\" text NOT NULL,\n  \"recipeId\" text NOT NULL,\n  PRIMARY KEY (\"itemId\", \"recipeId\")\n)",
+        "params": []
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify table \"ShoppingListItemRecipe\" exists",
+        "sql": "SELECT (to_regclass($1)) IS NOT NULL AS \"result\"",
+        "params": [
+          "\"public\".\"ShoppingListItemRecipe\""
+        ]
+      }
+    ]
+  },
+  {
+    "id": "index.Ingredient.Ingredient_clerkId_idx_610a6a63",
+    "label": "Create index \"Ingredient_clerkId_idx_610a6a63\" on \"Ingredient\"",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "public",
+        "objectType": "index",
+        "name": "Ingredient_clerkId_idx_610a6a63",
+        "table": "Ingredient"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure index \"Ingredient_clerkId_idx_610a6a63\" does not exist",
+        "sql": "SELECT (to_regclass($1)) IS NULL AS \"result\"",
+        "params": [
+          "\"public\".\"Ingredient_clerkId_idx_610a6a63\""
+        ]
+      }
+    ],
+    "execute": [
+      {
+        "description": "create index \"Ingredient_clerkId_idx_610a6a63\"",
+        "sql": "CREATE INDEX \"Ingredient_clerkId_idx_610a6a63\" ON \"public\".\"Ingredient\" (\"clerkId\")",
+        "params": []
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify index \"Ingredient_clerkId_idx_610a6a63\" exists",
+        "sql": "SELECT (to_regclass($1)) IS NOT NULL AS \"result\"",
+        "params": [
+          "\"public\".\"Ingredient_clerkId_idx_610a6a63\""
+        ]
+      }
+    ]
+  },
+  {
+    "id": "index.PlannedRecipe.PlannedRecipe_clerkId_date_idx_ee5b1f6c",
+    "label": "Create index \"PlannedRecipe_clerkId_date_idx_ee5b1f6c\" on \"PlannedRecipe\"",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "public",
+        "objectType": "index",
+        "name": "PlannedRecipe_clerkId_date_idx_ee5b1f6c",
+        "table": "PlannedRecipe"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure index \"PlannedRecipe_clerkId_date_idx_ee5b1f6c\" does not exist",
+        "sql": "SELECT (to_regclass($1)) IS NULL AS \"result\"",
+        "params": [
+          "\"public\".\"PlannedRecipe_clerkId_date_idx_ee5b1f6c\""
+        ]
+      }
+    ],
+    "execute": [
+      {
+        "description": "create index \"PlannedRecipe_clerkId_date_idx_ee5b1f6c\"",
+        "sql": "CREATE INDEX \"PlannedRecipe_clerkId_date_idx_ee5b1f6c\" ON \"public\".\"PlannedRecipe\" (\"clerkId\", \"date\")",
+        "params": []
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify index \"PlannedRecipe_clerkId_date_idx_ee5b1f6c\" exists",
+        "sql": "SELECT (to_regclass($1)) IS NOT NULL AS \"result\"",
+        "params": [
+          "\"public\".\"PlannedRecipe_clerkId_date_idx_ee5b1f6c\""
+        ]
+      }
+    ]
+  },
+  {
+    "id": "index.PlannedRecipe.PlannedRecipe_recipeId_idx_037d8d32",
+    "label": "Create index \"PlannedRecipe_recipeId_idx_037d8d32\" on \"PlannedRecipe\"",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "public",
+        "objectType": "index",
+        "name": "PlannedRecipe_recipeId_idx_037d8d32",
+        "table": "PlannedRecipe"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure index \"PlannedRecipe_recipeId_idx_037d8d32\" does not exist",
+        "sql": "SELECT (to_regclass($1)) IS NULL AS \"result\"",
+        "params": [
+          "\"public\".\"PlannedRecipe_recipeId_idx_037d8d32\""
+        ]
+      }
+    ],
+    "execute": [
+      {
+        "description": "create index \"PlannedRecipe_recipeId_idx_037d8d32\"",
+        "sql": "CREATE INDEX \"PlannedRecipe_recipeId_idx_037d8d32\" ON \"public\".\"PlannedRecipe\" (\"recipeId\")",
+        "params": []
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify index \"PlannedRecipe_recipeId_idx_037d8d32\" exists",
+        "sql": "SELECT (to_regclass($1)) IS NOT NULL AS \"result\"",
+        "params": [
+          "\"public\".\"PlannedRecipe_recipeId_idx_037d8d32\""
+        ]
+      }
+    ]
+  },
+  {
+    "id": "index.Recipe.Recipe_clerkId_idx_610a6a63",
+    "label": "Create index \"Recipe_clerkId_idx_610a6a63\" on \"Recipe\"",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "public",
+        "objectType": "index",
+        "name": "Recipe_clerkId_idx_610a6a63",
+        "table": "Recipe"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure index \"Recipe_clerkId_idx_610a6a63\" does not exist",
+        "sql": "SELECT (to_regclass($1)) IS NULL AS \"result\"",
+        "params": [
+          "\"public\".\"Recipe_clerkId_idx_610a6a63\""
+        ]
+      }
+    ],
+    "execute": [
+      {
+        "description": "create index \"Recipe_clerkId_idx_610a6a63\"",
+        "sql": "CREATE INDEX \"Recipe_clerkId_idx_610a6a63\" ON \"public\".\"Recipe\" (\"clerkId\")",
+        "params": []
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify index \"Recipe_clerkId_idx_610a6a63\" exists",
+        "sql": "SELECT (to_regclass($1)) IS NOT NULL AS \"result\"",
+        "params": [
+          "\"public\".\"Recipe_clerkId_idx_610a6a63\""
+        ]
+      }
+    ]
+  },
+  {
+    "id": "index.RecipeIngredient.RecipeIngredient_ingredientId_idx_0bb57833",
+    "label": "Create index \"RecipeIngredient_ingredientId_idx_0bb57833\" on \"RecipeIngredient\"",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "public",
+        "objectType": "index",
+        "name": "RecipeIngredient_ingredientId_idx_0bb57833",
+        "table": "RecipeIngredient"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure index \"RecipeIngredient_ingredientId_idx_0bb57833\" does not exist",
+        "sql": "SELECT (to_regclass($1)) IS NULL AS \"result\"",
+        "params": [
+          "\"public\".\"RecipeIngredient_ingredientId_idx_0bb57833\""
+        ]
+      }
+    ],
+    "execute": [
+      {
+        "description": "create index \"RecipeIngredient_ingredientId_idx_0bb57833\"",
+        "sql": "CREATE INDEX \"RecipeIngredient_ingredientId_idx_0bb57833\" ON \"public\".\"RecipeIngredient\" (\"ingredientId\")",
+        "params": []
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify index \"RecipeIngredient_ingredientId_idx_0bb57833\" exists",
+        "sql": "SELECT (to_regclass($1)) IS NOT NULL AS \"result\"",
+        "params": [
+          "\"public\".\"RecipeIngredient_ingredientId_idx_0bb57833\""
+        ]
+      }
+    ]
+  },
+  {
+    "id": "index.RecipeIngredient.RecipeIngredient_recipeId_idx_037d8d32",
+    "label": "Create index \"RecipeIngredient_recipeId_idx_037d8d32\" on \"RecipeIngredient\"",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "public",
+        "objectType": "index",
+        "name": "RecipeIngredient_recipeId_idx_037d8d32",
+        "table": "RecipeIngredient"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure index \"RecipeIngredient_recipeId_idx_037d8d32\" does not exist",
+        "sql": "SELECT (to_regclass($1)) IS NULL AS \"result\"",
+        "params": [
+          "\"public\".\"RecipeIngredient_recipeId_idx_037d8d32\""
+        ]
+      }
+    ],
+    "execute": [
+      {
+        "description": "create index \"RecipeIngredient_recipeId_idx_037d8d32\"",
+        "sql": "CREATE INDEX \"RecipeIngredient_recipeId_idx_037d8d32\" ON \"public\".\"RecipeIngredient\" (\"recipeId\")",
+        "params": []
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify index \"RecipeIngredient_recipeId_idx_037d8d32\" exists",
+        "sql": "SELECT (to_regclass($1)) IS NOT NULL AS \"result\"",
+        "params": [
+          "\"public\".\"RecipeIngredient_recipeId_idx_037d8d32\""
+        ]
+      }
+    ]
+  },
+  {
+    "id": "index.ShoppingListItem.ShoppingListItem_clerkId_idx_610a6a63",
+    "label": "Create index \"ShoppingListItem_clerkId_idx_610a6a63\" on \"ShoppingListItem\"",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "public",
+        "objectType": "index",
+        "name": "ShoppingListItem_clerkId_idx_610a6a63",
+        "table": "ShoppingListItem"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure index \"ShoppingListItem_clerkId_idx_610a6a63\" does not exist",
+        "sql": "SELECT (to_regclass($1)) IS NULL AS \"result\"",
+        "params": [
+          "\"public\".\"ShoppingListItem_clerkId_idx_610a6a63\""
+        ]
+      }
+    ],
+    "execute": [
+      {
+        "description": "create index \"ShoppingListItem_clerkId_idx_610a6a63\"",
+        "sql": "CREATE INDEX \"ShoppingListItem_clerkId_idx_610a6a63\" ON \"public\".\"ShoppingListItem\" (\"clerkId\")",
+        "params": []
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify index \"ShoppingListItem_clerkId_idx_610a6a63\" exists",
+        "sql": "SELECT (to_regclass($1)) IS NOT NULL AS \"result\"",
+        "params": [
+          "\"public\".\"ShoppingListItem_clerkId_idx_610a6a63\""
+        ]
+      }
+    ]
+  },
+  {
+    "id": "index.ShoppingListItem.ShoppingListItem_ingredientId_idx_0bb57833",
+    "label": "Create index \"ShoppingListItem_ingredientId_idx_0bb57833\" on \"ShoppingListItem\"",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "public",
+        "objectType": "index",
+        "name": "ShoppingListItem_ingredientId_idx_0bb57833",
+        "table": "ShoppingListItem"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure index \"ShoppingListItem_ingredientId_idx_0bb57833\" does not exist",
+        "sql": "SELECT (to_regclass($1)) IS NULL AS \"result\"",
+        "params": [
+          "\"public\".\"ShoppingListItem_ingredientId_idx_0bb57833\""
+        ]
+      }
+    ],
+    "execute": [
+      {
+        "description": "create index \"ShoppingListItem_ingredientId_idx_0bb57833\"",
+        "sql": "CREATE INDEX \"ShoppingListItem_ingredientId_idx_0bb57833\" ON \"public\".\"ShoppingListItem\" (\"ingredientId\")",
+        "params": []
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify index \"ShoppingListItem_ingredientId_idx_0bb57833\" exists",
+        "sql": "SELECT (to_regclass($1)) IS NOT NULL AS \"result\"",
+        "params": [
+          "\"public\".\"ShoppingListItem_ingredientId_idx_0bb57833\""
+        ]
+      }
+    ]
+  },
+  {
+    "id": "index.ShoppingListItem.shopping_list_item_one_open_line_12fc15aa",
+    "label": "Create index \"shopping_list_item_one_open_line_12fc15aa\" on \"ShoppingListItem\"",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "public",
+        "objectType": "index",
+        "name": "shopping_list_item_one_open_line_12fc15aa",
+        "table": "ShoppingListItem"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure index \"shopping_list_item_one_open_line_12fc15aa\" does not exist",
+        "sql": "SELECT (to_regclass($1)) IS NULL AS \"result\"",
+        "params": [
+          "\"public\".\"shopping_list_item_one_open_line_12fc15aa\""
+        ]
+      }
+    ],
+    "execute": [
+      {
+        "description": "create index \"shopping_list_item_one_open_line_12fc15aa\"",
+        "sql": "CREATE UNIQUE INDEX \"shopping_list_item_one_open_line_12fc15aa\" ON \"public\".\"ShoppingListItem\" (\"clerkId\", \"ingredientId\") WHERE ((NOT \"ticked\" AND \"ingredientId\" IS NOT NULL))",
+        "params": []
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify index \"shopping_list_item_one_open_line_12fc15aa\" exists",
+        "sql": "SELECT (to_regclass($1)) IS NOT NULL AS \"result\"",
+        "params": [
+          "\"public\".\"shopping_list_item_one_open_line_12fc15aa\""
+        ]
+      }
+    ]
+  },
+  {
+    "id": "index.ShoppingListItemQuantity.ShoppingListItemQuantity_itemId_idx_41357140",
+    "label": "Create index \"ShoppingListItemQuantity_itemId_idx_41357140\" on \"ShoppingListItemQuantity\"",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "public",
+        "objectType": "index",
+        "name": "ShoppingListItemQuantity_itemId_idx_41357140",
+        "table": "ShoppingListItemQuantity"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure index \"ShoppingListItemQuantity_itemId_idx_41357140\" does not exist",
+        "sql": "SELECT (to_regclass($1)) IS NULL AS \"result\"",
+        "params": [
+          "\"public\".\"ShoppingListItemQuantity_itemId_idx_41357140\""
+        ]
+      }
+    ],
+    "execute": [
+      {
+        "description": "create index \"ShoppingListItemQuantity_itemId_idx_41357140\"",
+        "sql": "CREATE INDEX \"ShoppingListItemQuantity_itemId_idx_41357140\" ON \"public\".\"ShoppingListItemQuantity\" (\"itemId\")",
+        "params": []
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify index \"ShoppingListItemQuantity_itemId_idx_41357140\" exists",
+        "sql": "SELECT (to_regclass($1)) IS NOT NULL AS \"result\"",
+        "params": [
+          "\"public\".\"ShoppingListItemQuantity_itemId_idx_41357140\""
+        ]
+      }
+    ]
+  },
+  {
+    "id": "index.ShoppingListItemRecipe.ShoppingListItemRecipe_itemId_idx_41357140",
+    "label": "Create index \"ShoppingListItemRecipe_itemId_idx_41357140\" on \"ShoppingListItemRecipe\"",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "public",
+        "objectType": "index",
+        "name": "ShoppingListItemRecipe_itemId_idx_41357140",
+        "table": "ShoppingListItemRecipe"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure index \"ShoppingListItemRecipe_itemId_idx_41357140\" does not exist",
+        "sql": "SELECT (to_regclass($1)) IS NULL AS \"result\"",
+        "params": [
+          "\"public\".\"ShoppingListItemRecipe_itemId_idx_41357140\""
+        ]
+      }
+    ],
+    "execute": [
+      {
+        "description": "create index \"ShoppingListItemRecipe_itemId_idx_41357140\"",
+        "sql": "CREATE INDEX \"ShoppingListItemRecipe_itemId_idx_41357140\" ON \"public\".\"ShoppingListItemRecipe\" (\"itemId\")",
+        "params": []
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify index \"ShoppingListItemRecipe_itemId_idx_41357140\" exists",
+        "sql": "SELECT (to_regclass($1)) IS NOT NULL AS \"result\"",
+        "params": [
+          "\"public\".\"ShoppingListItemRecipe_itemId_idx_41357140\""
+        ]
+      }
+    ]
+  },
+  {
+    "id": "index.ShoppingListItemRecipe.ShoppingListItemRecipe_recipeId_idx_037d8d32",
+    "label": "Create index \"ShoppingListItemRecipe_recipeId_idx_037d8d32\" on \"ShoppingListItemRecipe\"",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "public",
+        "objectType": "index",
+        "name": "ShoppingListItemRecipe_recipeId_idx_037d8d32",
+        "table": "ShoppingListItemRecipe"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure index \"ShoppingListItemRecipe_recipeId_idx_037d8d32\" does not exist",
+        "sql": "SELECT (to_regclass($1)) IS NULL AS \"result\"",
+        "params": [
+          "\"public\".\"ShoppingListItemRecipe_recipeId_idx_037d8d32\""
+        ]
+      }
+    ],
+    "execute": [
+      {
+        "description": "create index \"ShoppingListItemRecipe_recipeId_idx_037d8d32\"",
+        "sql": "CREATE INDEX \"ShoppingListItemRecipe_recipeId_idx_037d8d32\" ON \"public\".\"ShoppingListItemRecipe\" (\"recipeId\")",
+        "params": []
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify index \"ShoppingListItemRecipe_recipeId_idx_037d8d32\" exists",
+        "sql": "SELECT (to_regclass($1)) IS NOT NULL AS \"result\"",
+        "params": [
+          "\"public\".\"ShoppingListItemRecipe_recipeId_idx_037d8d32\""
+        ]
+      }
+    ]
+  },
+  {
+    "id": "foreignKey.PlannedRecipe.PlannedRecipe_recipeId_fkey",
+    "label": "Add foreign key \"PlannedRecipe_recipeId_fkey\" on \"PlannedRecipe\"",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "public",
+        "objectType": "foreignKey",
+        "name": "PlannedRecipe_recipeId_fkey",
+        "table": "PlannedRecipe"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure FK \"PlannedRecipe_recipeId_fkey\" does not exist",
+        "sql": "SELECT NOT EXISTS (SELECT 1 AS \"one\" FROM \"pg_constraint\" AS \"c\" INNER JOIN \"pg_namespace\" AS \"n\" ON \"n\".\"oid\" = \"c\".\"connamespace\" WHERE (\"c\".\"conname\" = $1 AND \"n\".\"nspname\" = $2 AND \"c\".\"conrelid\" = to_regclass($3))) AS \"result\"",
+        "params": [
+          "PlannedRecipe_recipeId_fkey",
+          "public",
+          "\"public\".\"PlannedRecipe\""
+        ]
+      }
+    ],
+    "execute": [
+      {
+        "description": "add FK \"PlannedRecipe_recipeId_fkey\"",
+        "sql": "ALTER TABLE \"public\".\"PlannedRecipe\"\nADD CONSTRAINT \"PlannedRecipe_recipeId_fkey\"\nFOREIGN KEY (\"recipeId\")\nREFERENCES \"public\".\"Recipe\" (\"id\")"
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify FK \"PlannedRecipe_recipeId_fkey\" exists",
+        "sql": "SELECT EXISTS (SELECT 1 AS \"one\" FROM \"pg_constraint\" AS \"c\" INNER JOIN \"pg_namespace\" AS \"n\" ON \"n\".\"oid\" = \"c\".\"connamespace\" WHERE (\"c\".\"conname\" = $1 AND \"n\".\"nspname\" = $2 AND \"c\".\"conrelid\" = to_regclass($3))) AS \"result\"",
+        "params": [
+          "PlannedRecipe_recipeId_fkey",
+          "public",
+          "\"public\".\"PlannedRecipe\""
+        ]
+      }
+    ]
+  },
+  {
+    "id": "foreignKey.RecipeIngredient.RecipeIngredient_recipeId_fkey",
+    "label": "Add foreign key \"RecipeIngredient_recipeId_fkey\" on \"RecipeIngredient\"",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "public",
+        "objectType": "foreignKey",
+        "name": "RecipeIngredient_recipeId_fkey",
+        "table": "RecipeIngredient"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure FK \"RecipeIngredient_recipeId_fkey\" does not exist",
+        "sql": "SELECT NOT EXISTS (SELECT 1 AS \"one\" FROM \"pg_constraint\" AS \"c\" INNER JOIN \"pg_namespace\" AS \"n\" ON \"n\".\"oid\" = \"c\".\"connamespace\" WHERE (\"c\".\"conname\" = $1 AND \"n\".\"nspname\" = $2 AND \"c\".\"conrelid\" = to_regclass($3))) AS \"result\"",
+        "params": [
+          "RecipeIngredient_recipeId_fkey",
+          "public",
+          "\"public\".\"RecipeIngredient\""
+        ]
+      }
+    ],
+    "execute": [
+      {
+        "description": "add FK \"RecipeIngredient_recipeId_fkey\"",
+        "sql": "ALTER TABLE \"public\".\"RecipeIngredient\"\nADD CONSTRAINT \"RecipeIngredient_recipeId_fkey\"\nFOREIGN KEY (\"recipeId\")\nREFERENCES \"public\".\"Recipe\" (\"id\")\nON DELETE CASCADE"
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify FK \"RecipeIngredient_recipeId_fkey\" exists",
+        "sql": "SELECT EXISTS (SELECT 1 AS \"one\" FROM \"pg_constraint\" AS \"c\" INNER JOIN \"pg_namespace\" AS \"n\" ON \"n\".\"oid\" = \"c\".\"connamespace\" WHERE (\"c\".\"conname\" = $1 AND \"n\".\"nspname\" = $2 AND \"c\".\"conrelid\" = to_regclass($3))) AS \"result\"",
+        "params": [
+          "RecipeIngredient_recipeId_fkey",
+          "public",
+          "\"public\".\"RecipeIngredient\""
+        ]
+      }
+    ]
+  },
+  {
+    "id": "foreignKey.RecipeIngredient.RecipeIngredient_ingredientId_fkey",
+    "label": "Add foreign key \"RecipeIngredient_ingredientId_fkey\" on \"RecipeIngredient\"",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "public",
+        "objectType": "foreignKey",
+        "name": "RecipeIngredient_ingredientId_fkey",
+        "table": "RecipeIngredient"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure FK \"RecipeIngredient_ingredientId_fkey\" does not exist",
+        "sql": "SELECT NOT EXISTS (SELECT 1 AS \"one\" FROM \"pg_constraint\" AS \"c\" INNER JOIN \"pg_namespace\" AS \"n\" ON \"n\".\"oid\" = \"c\".\"connamespace\" WHERE (\"c\".\"conname\" = $1 AND \"n\".\"nspname\" = $2 AND \"c\".\"conrelid\" = to_regclass($3))) AS \"result\"",
+        "params": [
+          "RecipeIngredient_ingredientId_fkey",
+          "public",
+          "\"public\".\"RecipeIngredient\""
+        ]
+      }
+    ],
+    "execute": [
+      {
+        "description": "add FK \"RecipeIngredient_ingredientId_fkey\"",
+        "sql": "ALTER TABLE \"public\".\"RecipeIngredient\"\nADD CONSTRAINT \"RecipeIngredient_ingredientId_fkey\"\nFOREIGN KEY (\"ingredientId\")\nREFERENCES \"public\".\"Ingredient\" (\"id\")"
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify FK \"RecipeIngredient_ingredientId_fkey\" exists",
+        "sql": "SELECT EXISTS (SELECT 1 AS \"one\" FROM \"pg_constraint\" AS \"c\" INNER JOIN \"pg_namespace\" AS \"n\" ON \"n\".\"oid\" = \"c\".\"connamespace\" WHERE (\"c\".\"conname\" = $1 AND \"n\".\"nspname\" = $2 AND \"c\".\"conrelid\" = to_regclass($3))) AS \"result\"",
+        "params": [
+          "RecipeIngredient_ingredientId_fkey",
+          "public",
+          "\"public\".\"RecipeIngredient\""
+        ]
+      }
+    ]
+  },
+  {
+    "id": "foreignKey.ShoppingListItem.ShoppingListItem_ingredientId_fkey",
+    "label": "Add foreign key \"ShoppingListItem_ingredientId_fkey\" on \"ShoppingListItem\"",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "public",
+        "objectType": "foreignKey",
+        "name": "ShoppingListItem_ingredientId_fkey",
+        "table": "ShoppingListItem"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure FK \"ShoppingListItem_ingredientId_fkey\" does not exist",
+        "sql": "SELECT NOT EXISTS (SELECT 1 AS \"one\" FROM \"pg_constraint\" AS \"c\" INNER JOIN \"pg_namespace\" AS \"n\" ON \"n\".\"oid\" = \"c\".\"connamespace\" WHERE (\"c\".\"conname\" = $1 AND \"n\".\"nspname\" = $2 AND \"c\".\"conrelid\" = to_regclass($3))) AS \"result\"",
+        "params": [
+          "ShoppingListItem_ingredientId_fkey",
+          "public",
+          "\"public\".\"ShoppingListItem\""
+        ]
+      }
+    ],
+    "execute": [
+      {
+        "description": "add FK \"ShoppingListItem_ingredientId_fkey\"",
+        "sql": "ALTER TABLE \"public\".\"ShoppingListItem\"\nADD CONSTRAINT \"ShoppingListItem_ingredientId_fkey\"\nFOREIGN KEY (\"ingredientId\")\nREFERENCES \"public\".\"Ingredient\" (\"id\")"
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify FK \"ShoppingListItem_ingredientId_fkey\" exists",
+        "sql": "SELECT EXISTS (SELECT 1 AS \"one\" FROM \"pg_constraint\" AS \"c\" INNER JOIN \"pg_namespace\" AS \"n\" ON \"n\".\"oid\" = \"c\".\"connamespace\" WHERE (\"c\".\"conname\" = $1 AND \"n\".\"nspname\" = $2 AND \"c\".\"conrelid\" = to_regclass($3))) AS \"result\"",
+        "params": [
+          "ShoppingListItem_ingredientId_fkey",
+          "public",
+          "\"public\".\"ShoppingListItem\""
+        ]
+      }
+    ]
+  },
+  {
+    "id": "foreignKey.ShoppingListItemQuantity.ShoppingListItemQuantity_itemId_fkey",
+    "label": "Add foreign key \"ShoppingListItemQuantity_itemId_fkey\" on \"ShoppingListItemQuantity\"",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "public",
+        "objectType": "foreignKey",
+        "name": "ShoppingListItemQuantity_itemId_fkey",
+        "table": "ShoppingListItemQuantity"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure FK \"ShoppingListItemQuantity_itemId_fkey\" does not exist",
+        "sql": "SELECT NOT EXISTS (SELECT 1 AS \"one\" FROM \"pg_constraint\" AS \"c\" INNER JOIN \"pg_namespace\" AS \"n\" ON \"n\".\"oid\" = \"c\".\"connamespace\" WHERE (\"c\".\"conname\" = $1 AND \"n\".\"nspname\" = $2 AND \"c\".\"conrelid\" = to_regclass($3))) AS \"result\"",
+        "params": [
+          "ShoppingListItemQuantity_itemId_fkey",
+          "public",
+          "\"public\".\"ShoppingListItemQuantity\""
+        ]
+      }
+    ],
+    "execute": [
+      {
+        "description": "add FK \"ShoppingListItemQuantity_itemId_fkey\"",
+        "sql": "ALTER TABLE \"public\".\"ShoppingListItemQuantity\"\nADD CONSTRAINT \"ShoppingListItemQuantity_itemId_fkey\"\nFOREIGN KEY (\"itemId\")\nREFERENCES \"public\".\"ShoppingListItem\" (\"id\")\nON DELETE CASCADE"
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify FK \"ShoppingListItemQuantity_itemId_fkey\" exists",
+        "sql": "SELECT EXISTS (SELECT 1 AS \"one\" FROM \"pg_constraint\" AS \"c\" INNER JOIN \"pg_namespace\" AS \"n\" ON \"n\".\"oid\" = \"c\".\"connamespace\" WHERE (\"c\".\"conname\" = $1 AND \"n\".\"nspname\" = $2 AND \"c\".\"conrelid\" = to_regclass($3))) AS \"result\"",
+        "params": [
+          "ShoppingListItemQuantity_itemId_fkey",
+          "public",
+          "\"public\".\"ShoppingListItemQuantity\""
+        ]
+      }
+    ]
+  },
+  {
+    "id": "foreignKey.ShoppingListItemRecipe.ShoppingListItemRecipe_itemId_fkey",
+    "label": "Add foreign key \"ShoppingListItemRecipe_itemId_fkey\" on \"ShoppingListItemRecipe\"",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "public",
+        "objectType": "foreignKey",
+        "name": "ShoppingListItemRecipe_itemId_fkey",
+        "table": "ShoppingListItemRecipe"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure FK \"ShoppingListItemRecipe_itemId_fkey\" does not exist",
+        "sql": "SELECT NOT EXISTS (SELECT 1 AS \"one\" FROM \"pg_constraint\" AS \"c\" INNER JOIN \"pg_namespace\" AS \"n\" ON \"n\".\"oid\" = \"c\".\"connamespace\" WHERE (\"c\".\"conname\" = $1 AND \"n\".\"nspname\" = $2 AND \"c\".\"conrelid\" = to_regclass($3))) AS \"result\"",
+        "params": [
+          "ShoppingListItemRecipe_itemId_fkey",
+          "public",
+          "\"public\".\"ShoppingListItemRecipe\""
+        ]
+      }
+    ],
+    "execute": [
+      {
+        "description": "add FK \"ShoppingListItemRecipe_itemId_fkey\"",
+        "sql": "ALTER TABLE \"public\".\"ShoppingListItemRecipe\"\nADD CONSTRAINT \"ShoppingListItemRecipe_itemId_fkey\"\nFOREIGN KEY (\"itemId\")\nREFERENCES \"public\".\"ShoppingListItem\" (\"id\")\nON DELETE CASCADE"
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify FK \"ShoppingListItemRecipe_itemId_fkey\" exists",
+        "sql": "SELECT EXISTS (SELECT 1 AS \"one\" FROM \"pg_constraint\" AS \"c\" INNER JOIN \"pg_namespace\" AS \"n\" ON \"n\".\"oid\" = \"c\".\"connamespace\" WHERE (\"c\".\"conname\" = $1 AND \"n\".\"nspname\" = $2 AND \"c\".\"conrelid\" = to_regclass($3))) AS \"result\"",
+        "params": [
+          "ShoppingListItemRecipe_itemId_fkey",
+          "public",
+          "\"public\".\"ShoppingListItemRecipe\""
+        ]
+      }
+    ]
+  },
+  {
+    "id": "foreignKey.ShoppingListItemRecipe.ShoppingListItemRecipe_recipeId_fkey",
+    "label": "Add foreign key \"ShoppingListItemRecipe_recipeId_fkey\" on \"ShoppingListItemRecipe\"",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "public",
+        "objectType": "foreignKey",
+        "name": "ShoppingListItemRecipe_recipeId_fkey",
+        "table": "ShoppingListItemRecipe"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure FK \"ShoppingListItemRecipe_recipeId_fkey\" does not exist",
+        "sql": "SELECT NOT EXISTS (SELECT 1 AS \"one\" FROM \"pg_constraint\" AS \"c\" INNER JOIN \"pg_namespace\" AS \"n\" ON \"n\".\"oid\" = \"c\".\"connamespace\" WHERE (\"c\".\"conname\" = $1 AND \"n\".\"nspname\" = $2 AND \"c\".\"conrelid\" = to_regclass($3))) AS \"result\"",
+        "params": [
+          "ShoppingListItemRecipe_recipeId_fkey",
+          "public",
+          "\"public\".\"ShoppingListItemRecipe\""
+        ]
+      }
+    ],
+    "execute": [
+      {
+        "description": "add FK \"ShoppingListItemRecipe_recipeId_fkey\"",
+        "sql": "ALTER TABLE \"public\".\"ShoppingListItemRecipe\"\nADD CONSTRAINT \"ShoppingListItemRecipe_recipeId_fkey\"\nFOREIGN KEY (\"recipeId\")\nREFERENCES \"public\".\"Recipe\" (\"id\")\nON DELETE CASCADE"
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify FK \"ShoppingListItemRecipe_recipeId_fkey\" exists",
+        "sql": "SELECT EXISTS (SELECT 1 AS \"one\" FROM \"pg_constraint\" AS \"c\" INNER JOIN \"pg_namespace\" AS \"n\" ON \"n\".\"oid\" = \"c\".\"connamespace\" WHERE (\"c\".\"conname\" = $1 AND \"n\".\"nspname\" = $2 AND \"c\".\"conrelid\" = to_regclass($3))) AS \"result\"",
+        "params": [
+          "ShoppingListItemRecipe_recipeId_fkey",
+          "public",
+          "\"public\".\"ShoppingListItemRecipe\""
+        ]
+      }
+    ]
+  }
+]

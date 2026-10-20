@@ -4,7 +4,9 @@ export default defineConfig({
   staged: {
     "*": "vp check --fix",
   },
-  fmt: {},
+  fmt: {
+    ignorePatterns: [".scratch/**", "migrations/**"],
+  },
   lint: {
     plugins: ["oxc", "typescript", "unicorn", "nextjs"],
     categories: {
@@ -13,7 +15,15 @@ export default defineConfig({
     env: {
       builtin: true,
     },
-    ignorePatterns: [".next/**", "out/**", "build/**", "next-env.d.ts", "src/prisma/contract.d.ts"],
+    ignorePatterns: [
+      ".next/**",
+      "out/**",
+      ".scratch/**",
+      "build/**",
+      "next-env.d.ts",
+      "src/prisma/contract.d.ts",
+      "migrations/**",
+    ],
     rules: {
       "no-array-constructor": "error",
       "no-unused-expressions": "error",
