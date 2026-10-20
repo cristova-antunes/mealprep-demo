@@ -1,3 +1,9 @@
+# About this app
+
+Meal-prep planner: users inserts and pick recipes for the week, and the app builds a prep schedule and a combined shopping list.
+Meant to be used across mobile (during groceries), tablet (during cooking) and desktop (during recipe CRUD).
+Stack: Next.js (App Router) + Tailwind, managed with Vite+. Uses Prisma as ORM and Clerk for auth.
+
 <!-- BEGIN:nextjs-agent-rules -->
 
 ## This is NOT the Next.js you know
@@ -35,3 +41,17 @@ release. Add a tool name to select part of the graph. For example, run
 - [ ] If setup, runtime, or package-manager behavior looks wrong, run `vp env doctor` and include its output when asking for help.
 
 <!--VITE PLUS END-->
+
+## Agent skills
+
+### Issue tracker
+
+Issues and specs live as local markdown files under `.scratch/<feature>/`. See `docs/agents/issue-tracker.md`.
+
+### Triage labels
+
+Uses the five default triage roles (`needs-triage`, `needs-info`, `ready-for-agent`, `ready-for-human`, `wontfix`), recorded as a `Status:` line in each issue file. See `docs/agents/triage-labels.md`.
+
+### Domain docs
+
+Single-context: one `CONTEXT.md` and `docs/adr/` at the repo root. See `docs/agents/domain.md`.
